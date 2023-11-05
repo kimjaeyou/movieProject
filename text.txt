@@ -1,8 +1,3 @@
-<<<<<<< HEAD
 aaaaaa
 cccccc
 dddddd
-=======
-aaaaaa
-cccccc
->>>>>>> branch 'main' of https://github.com/kimjaeyou/test2.git
