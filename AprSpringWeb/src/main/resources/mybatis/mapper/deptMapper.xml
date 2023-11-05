@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="com.example.dao.DeptDao"> --> 
+<mapper namespace="com.example.dao.FileinfoDao"> 
+	
+	
+	 
+	<!--insert position  -->
+	
+	
+	<!-- 
+	<insert id="addDept" parameterType="com.example.dto.Dept">
+		insert into dept(deptno, dname,loc)
+		values(#{deptno},#{dname},#{loc})
+	</insert> -->
+	
+	
+	<!--//////////////insert position  -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--update position  -->
+	
+	
+	<!--여기만 풀어서  -->
+<!-- 	<update id="updateDept" parameterType="com.example.dto.Dept">
+		update dept 
+			<set> 
+				<if test="dname != ''"> dname=#{dname},</if>
+				<if test="loc != ''">loc=#{loc}</if>
+			</set>	
+		where deptno = #{deptno}
+	</update> -->
+	
+	
+	
+	<!--/////////////////update position  -->
+	
+	
+	
+		
+	
+	
+	
+	
+	<!--delete position  -->
+	
+	<!-- <delete id="deleteDept" parameterType="int">
+		delete from dept where deptno=#{deptno}
+	</delete> -->
+	
+	
+	<!--/////////////////delete position  -->
+	
+	
+	
+	
+	
+	
+	
+	<!--select position  -->
+	
+	
+	
+	<!-- <select id="deptAll" resultType="com.example.dto.Dept">
+		select * from dept order by deptno
+	</select> -->
+	
+	
+	<!-- <select id="nwDeptno" resultType="int">
+		select max(deptno)+10 as max from dept 
+	</select> -->
+	
+	
+	<!-- <select id="searchDept"
+		parameterType="String"  
+		resultType="com.example.dto.Dept">
+		select * from dept where dname like concat('%', #{dname}, '%')
+	</select> -->
+	
+	
+	<!--/////////////////select position  -->
+	
+	
+	
+<!-- //resulttype는 컬럼수에 맞춰서 -->
+
+</mapper>  
