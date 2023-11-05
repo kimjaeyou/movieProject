@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 aaaa tttt
+=======
+aaaa
+bbbb
+>>>>>>> branch 'kim' of https://github.com/kimjaeyou/test2.git
