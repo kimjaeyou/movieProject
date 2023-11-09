@@ -16,7 +16,7 @@ public class Acontroller {
 	public String aform() {
 		return ("a/form");
 	}
-	
+	//hello
 	@PostMapping()
 	public String aSubmit(@ModelAttribute("a") Acommand Acommand) {
 		System.out.println(Acommand);
