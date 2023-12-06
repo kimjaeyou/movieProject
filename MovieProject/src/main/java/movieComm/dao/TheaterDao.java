@@ -3,6 +3,6 @@ package movieComm.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public class TheaterDao {
+public interface TheaterDao {
 
 }
