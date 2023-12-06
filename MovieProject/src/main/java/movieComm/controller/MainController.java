@@ -10,5 +10,6 @@ public class MainController {
 	public static String goMain() {
 		return "home";
 	}
+	
 
 }
