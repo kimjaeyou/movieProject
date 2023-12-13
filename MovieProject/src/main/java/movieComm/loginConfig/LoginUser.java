@@ -14,7 +14,7 @@ private static final long serialVersionUID = 1L;
 	
 	public LoginUser(UserDto user) {
 	    //super(user.getUserid(), "{noop}"+user.getUserpw(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
-		super(user.getUser_id(), user.getUser_pw(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
+		super(user.getUser_id(), user.getUser_pw(), AuthorityUtils.createAuthorityList());
 		this.user = user;
 	}
 	
