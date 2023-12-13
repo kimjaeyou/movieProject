@@ -41,6 +41,11 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
+                    <form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
+                        <button class="btn btn-outline-dark" type="submit">
+                            Login
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
