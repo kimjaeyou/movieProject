@@ -44,5 +44,9 @@ public class MainController {
 	public static String Ticketing() {
 		return "Ticketing/Info";
 	}
+	@RequestMapping("movieReview")
+	public static String Review() {
+		return "Movie/movieReview";
+	}
 
 }
