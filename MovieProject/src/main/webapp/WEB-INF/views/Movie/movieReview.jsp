@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -24,9 +25,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Ticketing">��留�</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">������蹂�</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="MovieInfo">All Products</a></li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -55,11 +56,11 @@
         <section id="moviePost">		
 			<div> 
 				<div id="postText">
-					<h3>대충 영화 제목 가져오는 api</h3>
-					<div>대충 영화 제목 가져오는 api</div>
-					<div>대충 영화 개봉년, 장르, 국가 가져오는 api</div>
-					<div>대충 영화 연령 가져오는 api</div>
-					<div>대충 영화 예매률 가져오는 api</div>
+					<h3>��異� ���� ��紐� 媛��몄�ㅻ�� api</h3>
+					<div>��異� ���� ��紐� 媛��몄�ㅻ�� api</div>
+					<div>��異� ���� 媛�遊���, �λⅤ, 援�媛� 媛��몄�ㅻ�� api</div>
+					<div>��異� ���� �곕�� 媛��몄�ㅻ�� api</div>
+					<div>��異� ���� ��留ㅻ� 媛��몄�ㅻ�� api</div>
 				</div>
 			</div>
 		</section>
@@ -68,80 +69,80 @@
 		<section id="movieDetail">
 			<div id="movieCoverLeft"></div>
 			<div id="movieCoverRight">
-				<div id="starValue">평균 별점</div>
-				<div>줄거리</div>
+				<div id="starValue">��洹� 蹂���</div>
+				<div>以�嫄곕━</div>
 			</div>
 		</section>
 		<p>
 		<hr>
 		<section id="movieReview">
 			<header>
-				<div><h4>코멘트</h4></div>
+				<div><h4>肄�硫���</h4></div>
 				<p>
 			</header>
 			<ul id="movieComment">
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
+						<div>��濡���</div>
+						<div>�댁��</div>
+						<div>醫�����&��湲���</div>
+						<div>醫����� 踰���</div>
 					</div>
 				</li>
 			</ul>
@@ -150,8 +151,8 @@
 		
 
 		<aside id="a">
-			<div>게시판</div>
-			<div>영화</div>
+			<div>寃�����</div>
+			<div>����</div>
 		</aside>
 	</div>
         <!-- Section-->

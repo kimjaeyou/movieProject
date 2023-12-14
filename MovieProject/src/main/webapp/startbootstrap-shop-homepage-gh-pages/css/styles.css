@@ -10874,11 +10874,11 @@ textarea.form-control-lg {
 			#moviePost
 			{
 				position: relative;
-				width : 100%;
-				height : 800px;
-				background-image : url(../../images/HarryPotter_post.jpg);
+				width : auto;
+				height : auto;
+				background-image : url(../../images/HarryPotter_Main.jpg);
 				background-position : center;
-				background-size: contain;
+				background-size:cover;
 			}
 			#postText
 			{	
