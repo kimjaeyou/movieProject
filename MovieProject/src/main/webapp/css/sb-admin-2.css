@@ -11265,7 +11265,6 @@ form.user .btn-user {
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim-2 3s infinite linear alternate-reverse;
 }
-
 footer.sticky-footer {
   padding: 2rem 0;
   flex-shrink: 0;

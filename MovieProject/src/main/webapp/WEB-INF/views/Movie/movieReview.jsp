@@ -1,149 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>¸®ºä°Ô½ÃÆÇ</title>
-		<style>
-			section
-			{
-				border : 2px solid blue;
-			}
-			aside
-			{	
-				margin-top :30px; 
-				border : 2px solid yellow;
-			}
-			#all
-			{
-				margin : 0 3.5%;
-			}
-			#menuBar
-			{
-				position: fixed;
-				top: 0px; /* ÅÇÀÌ ÆäÀÌÁö À§¿¡ ¼û°ÜÁ® ÀÖÀ» ¶§ÀÇ À§Ä¡ */
-				left: 0;
-				width: 100%;
-				background-color: olive;
-				color: #fff;
-				padding: 20px;
-				text-align : center;
-				z-index : 1;
-				transition: top 0.3s ease;
-			}
-			@media screen and (max-width: 600px) {
-   				 #menuBar {
-					padding: 10px;
-    				}
-    				#menuBar ul li {
-      					display: block;
-      					padding: 10px 0;
-				}
-			}
-			#menuBar ul
-			{
-				margin : 0;
-				padding : 0;	
-			}
-			#menuBar ul li
-			{	
-				display : inline-block;
-				list-style-type : none;
-				padding : 0px 15px;	
-			}
-			#menuBar ul li a
-			{
-				color : white;
-				text-decoration : none;
-				transition : color 0.3s ease;	
-			}
-			#menuBar ul li a:hover
-			{
-				color: violet;
-			}
-			#moviePost
-			{
-				position: relative;
-				width : 100%;
-				height : 500px;
-				margin-top: 100px;
-				background-image : url();
-				background-position : center;
-				background-size: cover;
-			}
-			#postText
-			{	
-				position : absolute;
-            				bottom : 0;
-            				left : 0;
-				margin-bottom : 100px;
-				color : black;
-				padding : 10px;
-			}
-			#movieDetail
-			{
-				display : flex;
-				align-items : center;
-			}
-		        	#movieCoverLeft
-			{
-				background-image : url('ÇÑÀüKDNºû°¡¶÷SW_Kiosk_img\\RoomDB_img.png');
-				background-position : center;
-				background-size: cover;
-				width : 20%;
-				height : 200px;
-        			}
-			#movieCoverRight
-			{
-				width : 80%;
-				text-align : center;
-			}
-			#movieComment
-			{	
-				display : grid;
-				grid-template-columns : repeat(4, minmax(0px, 1fr));
-				gap : 8px;	
-				padding-left : 0px;	
-			}
-			.movieCommentList
-			{
-				verticle-align : top;
-				box-sizing : border-box;
-				width : 100%;
-				display : block;
-				padding : 0px;
-			}
-			.commentBox
-			{
-				border : 2px solid red;
-				box-shadow : 0 4px 8px rgba(0, 0, 0, 0.1);
-				padding : 10px;
-				margin-bottom : 10px;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="all">
-		<header>
-			<nav id="menuBar">
-				<ul>
-					<li><input type="text" placeholder="Å°¿öµå ÀÔ·Â"></a></li>
-					<li><a href="#">·Î±×ÀÎ</a></li>
-					<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
-				</ul>
-			</nav>
-		</header>
-
-		<section id="moviePost">		
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Movie_review</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="home">Movie=Pro</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Ticketing">ì˜ˆë§¤</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">ì˜í™”ì •ë³´</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="MovieInfo">All Products</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="MovieInfo">Popular Items</a></li>
+                                <li><a class="dropdown-item" href="MovieInfo">New Arrivals</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" action="MyPage" method="GET">
+                        <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-emoji-laughing-fill"></i>
+                            MyPage
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+                    <form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
+                        <button class="btn btn-outline-dark" type="submit">
+                            Login
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        
+        <section id="moviePost">		
 			<div> 
 				<div id="postText">
-					<h3>´ëÃæ ¿µÈ­ Á¦¸ñ °¡Á®¿À´Â api</h3>
-					<div>´ëÃæ ¿µÈ­ Á¦¸ñ °¡Á®¿À´Â api</div>
-					<div>´ëÃæ ¿µÈ­ °³ºÀ³â, Àå¸£, ±¹°¡ °¡Á®¿À´Â api</div>
-					<div>´ëÃæ ¿µÈ­ ¿¬·É °¡Á®¿À´Â api</div>
-					<div>´ëÃæ ¿µÈ­ ¿¹¸Å·ü °¡Á®¿À´Â api</div>
+					<h3>ëŒ€ì¶© ì˜í™” ì œëª© ê°€ì ¸ì˜¤ëŠ” api</h3>
+					<div>ëŒ€ì¶© ì˜í™” ì œëª© ê°€ì ¸ì˜¤ëŠ” api</div>
+					<div>ëŒ€ì¶© ì˜í™” ê°œë´‰ë…„, ì¥ë¥´, êµ­ê°€ ê°€ì ¸ì˜¤ëŠ” api</div>
+					<div>ëŒ€ì¶© ì˜í™” ì—°ë ¹ ê°€ì ¸ì˜¤ëŠ” api</div>
+					<div>ëŒ€ì¶© ì˜í™” ì˜ˆë§¤ë¥  ê°€ì ¸ì˜¤ëŠ” api</div>
 				</div>
 			</div>
 		</section>
@@ -152,80 +68,80 @@
 		<section id="movieDetail">
 			<div id="movieCoverLeft"></div>
 			<div id="movieCoverRight">
-				<div id="starValue">Æò±Õ º°Á¡</div>
-				<div>ÁÙ°Å¸®</div>
+				<div id="starValue">í‰ê·  ë³„ì </div>
+				<div>ì¤„ê±°ë¦¬</div>
 			</div>
 		</section>
 		<p>
 		<hr>
 		<section id="movieReview">
 			<header>
-				<div><h4>ÄÚ¸àÆ®</h4></div>
+				<div><h4>ì½”ë©˜íŠ¸</h4></div>
 				<p>
 			</header>
 			<ul id="movieComment">
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 				<li class="movieCommentList">
 					<div class="commentBox">
-						<div>ÇÁ·ÎÇÊ</div>
-						<div>³»¿ë</div>
-						<div>ÁÁ¾Æ¿ä&´ñ±Û¼ö</div>
-						<div>ÁÁ¾Æ¿ä ¹öÆ°</div>
+						<div>í”„ë¡œí•„</div>
+						<div>ë‚´ìš©</div>
+						<div>ì¢‹ì•„ìš”&ëŒ“ê¸€ìˆ˜</div>
+						<div>ì¢‹ì•„ìš” ë²„íŠ¼</div>
 					</div>
 				</li>
 			</ul>
@@ -234,10 +150,46 @@
 		
 
 		<aside id="a">
-			<div>°Ô½ÃÆÇ</div>
-			<div>¿µÈ­</div>
+			<div>ê²Œì‹œíŒ</div>
+			<div>ì˜í™”</div>
 		</aside>
 	</div>
-	</body>	
-	
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
+                <c:forEach items="${mlist}" var="option">
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="../../image/imageMovie.png" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">"${option.movieNm}"</h5>
+                                    <!-- Product price-->
+                                    "${option.typeNm}"
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </c:forEach>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; MovieBox 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+    </body>
 </html>
