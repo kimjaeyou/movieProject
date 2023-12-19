@@ -35,13 +35,18 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" action="MyPage" method="GET">
+                    <c:if test="${not empty userid}">
+                    	<form class="d-flex" action="MyPage" method="GET">
+                    </c:if>
+                    <c:if test="${empty userid}">
+                    	<form class="d-flex" action="login" method="GET">
+                    </c:if>
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-emoji-laughing-fill"></i>
                             MyPage
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
-                    </form>
+                    	</form>
                     <c:if test="${empty userid}">
                     	<form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
                         	<button class="btn btn-outline-dark" type="submit">
