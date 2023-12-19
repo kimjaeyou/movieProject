@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -34,18 +35,32 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" action="MyPage" method="GET">
+                    <c:if test="${not empty userid}">
+                    	<form class="d-flex" action="MyPage" method="GET">
+                    </c:if>
+                    <c:if test="${empty userid}">
+                    	<form class="d-flex" action="login" method="GET">
+                    </c:if>
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-emoji-laughing-fill"></i>
                             MyPage
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
-                    </form>
-                    <form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
-                        <button class="btn btn-outline-dark" type="submit">
-                            Login
-                        </button>
-                    </form>
+                    	</form>
+                    <c:if test="${empty userid}">
+                    	<form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
+                        	<button class="btn btn-outline-dark" type="submit">
+                           	 Login
+                        	</button>
+                    	</form>
+                    </c:if>
+                    <c:if test="${not empty userid}">
+                    	<form class="d-flex" action="logout" method="GET"  style="padding-left:10px;">
+                        	<button class="btn btn-outline-dark" type="submit">
+                            	Logout
+                        	</button>
+                    	</form>
+                    </c:if>
                 </div>
             </div>
         </nav>
@@ -61,12 +76,12 @@
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                   
-                   
-                   
-                   
-                   
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
+                	
+                
+                
+                
+                
                 </div>
             </div>
         </section>

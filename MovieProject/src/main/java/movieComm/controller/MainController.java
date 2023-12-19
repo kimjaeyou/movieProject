@@ -34,7 +34,10 @@ public class MainController {
 	}
 	
 	@GetMapping("MyPage")
-	public String goMyPage() {
+	public String goMyPage(Model m,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		System.out.println(userid);
+		m.addAttribute("userid",userid);
 		return "Mypage/Info";
 	}
 	
