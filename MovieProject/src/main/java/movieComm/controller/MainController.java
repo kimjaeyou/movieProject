@@ -52,5 +52,17 @@ public class MainController {
 	public static String Review() {
 		return "Movie/movieReview";
 	}
+	@RequestMapping("reviewList")
+	public static String reviewList() {
+		return "Movie/reviewList";
+	}
+	@RequestMapping("reviewBoard")
+	public static String reviewBoard() {
+		return "Movie/reviewBoard";
+	}
+	@RequestMapping("movieHistory")
+	public static String movieHistory() {
+		return "Movie/movieHistory";
+	}
 
 }
