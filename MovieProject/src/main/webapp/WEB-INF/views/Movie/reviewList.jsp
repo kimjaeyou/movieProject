@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>영화 예매</title>
+        <title>영화 리뷰</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -31,7 +31,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="movieBoard">내가 본 영화</a></li>
+                                <li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
                                 <li><a class="dropdown-item" href="MovieInfo">New Arrivals</a></li>
                             </ul>
                         </li>
@@ -53,133 +53,28 @@
         </nav>
        
         <!-- Header-->
-        <header class="bg_header">
-            <section id="moviePost">		
-			<div> 
-				<div id="postText">
-					<h3>대충 영화 제목 가져오는 api</h3>
-					<div>대충 영화 제목 가져오는 api</div>
-					<div>대충 영화 개봉년, 장르, 국가 가져오는 api</div>
-					<div>대충 영화 연령 가져오는 api</div>
-					<div>대충 영화 예매률 가져오는 api</div>
-				</div>
-			</div>
-		</section>
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Movie=Pro</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">영화 리뷰</p>
+                </div>
+            </div>
         </header>
-        
-        <div class="big_frame">
- 			<!-- section -->
-			<section id="movieDetail">
-				<div id="movieCoverLeft">
-					<div>
-						<div id="imgDiv"></div>
-						<div>
-							안녕
-						</div>
-					</div>
-				</div>
-				
-				<div id="movieCoverRight">
-					<div>
-						<div>
-							<div id="starValue">평균 별점은 몇점일까요?</div>
-						</div>
-						<div>
-							<div>줄거리</div>
-						</div>
-						<div>
-							<div><input type= "button"value = "예매하기"></div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-		
-		<div class="big_frame">
-			<!-- section -->
-			<section id="movieReview">
-				<header>
-					<h3>코멘트</h3>
-					<span>6000+</span>
-					<div id="comment_plus">
-						<div><a href="">더보기</a></div>
-					</div>
-				</header>
-				<ul id="movieComment">
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-					<li class="movieCommentList">
-						<div class="commentBox">
-							<div>프로필</div>
-							<div>내용</div>
-							<div>좋아요&댓글수</div>
-							<div>좋아요 버튼</div>
-						</div>
-					</li>
-				</ul>
-			</section>
-		</div>
-		
-
-		<aside id="a">
-			<div>게시판</div>
-			<div>영화</div>
-		</aside>
-	</div>
+       
+        <div>
+        	<section>
+        		<div>
+        			<div>
+        				<div>영화 사진</div>
+        				<div> api 관련 내용</div>
+        			</div>
+        			<div>리뷰 등록 창</div>
+        			<div><input type = "button" value="등록"></div>
+        		</div>
+        		
+        	</section>
+        </div>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
