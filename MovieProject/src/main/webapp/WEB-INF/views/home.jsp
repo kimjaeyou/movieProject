@@ -42,11 +42,20 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
-                    <form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
-                        <button class="btn btn-outline-dark" type="submit">
-                            Login
-                        </button>
-                    </form>
+                    <c:if test="${empty userid}">
+                    	<form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
+                        	<button class="btn btn-outline-dark" type="submit">
+                           	 Login
+                        	</button>
+                    	</form>
+                    </c:if>
+                    <c:if test="${not empty userid}">
+                    	<form class="d-flex" action="logout" method="GET"  style="padding-left:10px;">
+                        	<button class="btn btn-outline-dark" type="submit">
+                            	Logout
+                        	</button>
+                    	</form>
+                    </c:if>
                 </div>
             </div>
         </nav>
@@ -72,9 +81,9 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">"${option.movieNm}"</h5>
+                                    <h5 class="fw-bolder">${option.movieNm}</h5>
                                     <!-- Product price-->
-                                    "${option.typeNm}"
+                                    ${option.typeNm}
                                 </div>
                             </div>
                             <!-- Product actions-->

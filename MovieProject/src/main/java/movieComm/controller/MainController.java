@@ -28,6 +28,7 @@ public class MainController {
 		String userid = (String) session.getAttribute("userid");
 		System.out.println(userid);
 		List<Map<String, String>> mlist = Moservice.reMainList();
+		m.addAttribute("userid",userid);
 		m.addAttribute("mlist",mlist);
 		return "home";
 	}
