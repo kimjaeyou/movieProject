@@ -26,11 +26,6 @@ public class LoginController {
 		return "Login/login";
 	}
 	
-	@PostMapping("login")
-	public static String loginSucc() {
-		return "home";
-	}
-	
 	@RequestMapping("login/insert")
 	public static String loginInsert() {
 		System.out.println("here1");

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
 import movieComm.dao.Movie_listDao;
 import movieComm.service.MainService;
 
@@ -23,7 +24,9 @@ public class MainController {
 	MainService Moservice;
 	
 	@RequestMapping({"home","/"})
-	public String goMain(Model m) {
+	public String goMain(Model m,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		System.out.println(userid);
 		List<Map<String, String>> mlist = Moservice.reMainList();
 		m.addAttribute("mlist",mlist);
 		return "home";
