@@ -23,7 +23,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
@@ -35,18 +35,32 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" action="MyPage" method="GET">
+                    <c:if test="${not empty userid}">
+                    	<form class="d-flex" action="MyPage" method="GET">
+                    </c:if>
+                    <c:if test="${empty userid}">
+                    	<form class="d-flex" action="login" method="GET">
+                    </c:if>
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-emoji-laughing-fill"></i>
                             MyPage
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
-                    </form>
-                    <form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
-                        <button class="btn btn-outline-dark" type="submit">
-                            Login
-                        </button>
-                    </form>
+                    	</form>
+                    <c:if test="${empty userid}">
+                    	<form class="d-flex" action="login" method="GET"  style="padding-left:10px;">
+                        	<button class="btn btn-outline-dark" type="submit">
+                           	 Login
+                        	</button>
+                    	</form>
+                    </c:if>
+                    <c:if test="${not empty userid}">
+                    	<form class="d-flex" action="logout" method="GET"  style="padding-left:10px;">
+                        	<button class="btn btn-outline-dark" type="submit">
+                            	Logout
+                        	</button>
+                    	</form>
+                    </c:if>
                 </div>
             </div>
         </nav>
@@ -72,9 +86,9 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">"${option.movieNm}"</h5>
+                                    <h5 class="fw-bolder">${option.movieNm}</h5>
                                     <!-- Product price-->
-                                    "${option.typeNm}"
+                                    ${option.typeNm}
                                 </div>
                             </div>
                             <!-- Product actions-->
