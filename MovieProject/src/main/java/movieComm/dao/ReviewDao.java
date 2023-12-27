@@ -9,7 +9,7 @@ import java.util.Map;
 @Mapper
 public interface ReviewDao {
 
-	@Select("select * form review")
+	@Select("select * from review")
 	List<Map<String, String>>getList();
 	
 }

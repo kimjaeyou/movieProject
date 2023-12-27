@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,44 +68,79 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">내가 본 영화</p>
+				<p class="lead fw-normal text-white-50 mb-0">리뷰</p>
 			</div>
 		</div>
 	</header>
 
+	<section>
+		<div>
+			<form method="post" action="movieHistory">
+				<label for="review">리뷰 작성:</label>
+				<textarea id="review" name="review" rows="4" cols="50"></textarea>
+				<label for="rating">별점:</label>
+            	<select id="rating" name="rating" required>
+                	<option value="1">1</option>
+                	<option value="2">2</option>
+                	<option value="3">3</option>
+                	<option value="4">4</option>
+                	<option value="5">5</option>
+                </select>
+                <br> <input type="submit" value="리뷰 제출">
+			</form>
+		</div>
+		<div>
+			
+		</div>
+	</section>
+		
 	<div>
-		<section>
-			<div>
-				<c:forEach items="${tlist}" var="option">
-					<table border="1" width="100%">
-						<tr>
-							<th><img src="../../../images/HarryPotter_post.jpg" alt=""></th>
-							<th>${option.title}</th>
-							<th>별점</th>
-							<th><button id="goto_review">리뷰 작성</button></th>
-							<script>
-								document
-										.getElementById('goto_review')
-										.addEventListener(
-												'click',
-												function() {
-													window.location.href = 'reviewScript';
-												});
-							</script>
-						</tr>
-					</table>
-				</c:forEach>
-			</div>
+        <% 
+            // 폼이 submit되면 실행될 코드
+            if(request.getMethod().equals("POST")) {
+                String reviewText = request.getParameter("review");
+                int rating = Integer.parseInt(request.getParameter("rating"));
 
-		</section>
-	</div>
-	<!-- Section-->
+                Connection conn = null;
+                PreparedStatement pstmt = null;
+
+                try {
+                    // JDBC 드라이버 로딩
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    // 데이터베이스 연결
+                    String url = "jdbc:mysql://127.0.0.1:3306/projectMovie";
+                    String user = "root";
+                    String password = "root";
+                    conn = DriverManager.getConnection(url, user, password);
+
+                    // SQL 쿼리 실행
+                    String sql = "INSERT INTO review (review_text, rating) VALUES (?, ?)";
+                    pstmt = conn.prepareStatement(sql);
+                    pstmt.setString(1, reviewText);
+                    pstmt.setInt(2, rating);
+                    pstmt.executeUpdate();
+
+                    out.println("<p>리뷰가 성공적으로 저장되었습니다.</p>");
+                } catch (Exception e) {
+                    out.println("<p>오류가 발생했습니다: " + e.getMessage() + "</p>");
+                } finally {
+                    try {
+                        // 리소스 해제
+                        if (pstmt != null) pstmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException se) {
+                        se.printStackTrace();
+                    }
+                }
+            }
+        %>
+    </div>	
 	
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2023</p>
+			<p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
