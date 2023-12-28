@@ -16,7 +16,7 @@ public class MainService {
 	
 	public List<Map<String, String>> reMainList() {
 		List<Map<String, String>> mlist = mDao.getList();
-		System.out.println("               check:anchor_movie"+mlist);
+		System.out.println("check:anchor_movie"+mlist);
 		return mlist;
 	}
 }

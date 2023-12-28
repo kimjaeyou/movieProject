@@ -31,7 +31,9 @@
                                 <li><a class="dropdown-item" href="MovieInfo">All Products</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="MovieInfo">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="MovieInfo">New Arrivals</a></li>
+                                <c:if test="${not empty userid}">
+                                	<li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
+                                </c:if>
                             </ul>
                         </li>
                     </ul>
