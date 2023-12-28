@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import movieComm.dao.ReviewDao;
 import movieComm.dao.movieContentDao;
+import movieComm.dto.ReviewDto;
 
 @Service
 public class ReviewService {
@@ -27,5 +28,9 @@ public class ReviewService {
 		List<Map<String, String>> tlist = mCdao.getList();
 		System.out.println(""+tlist);
 		return tlist;
+	}
+	
+	public void script(ReviewDto review) {
+		Rdao.review(review);
 	}
 }

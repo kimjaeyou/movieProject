@@ -75,18 +75,19 @@
 
 	<section>
 		<div>
-			<form method="post" action="movieHistory">
+			<form method="post" action="reviewList">
 				<label for="review">리뷰 작성:</label>
-				<textarea id="review" name="review" rows="4" cols="50"></textarea>
-				<label for="rating">별점:</label>
-            	<select id="rating" name="rating" required>
+				<input type="text" name="content" size=60 maxlength=30>
+				<label for="score">별점:</label>
+            	<select id="score" name="score" size="1" required>
                 	<option value="1">1</option>
                 	<option value="2">2</option>
                 	<option value="3">3</option>
                 	<option value="4">4</option>
                 	<option value="5">5</option>
                 </select>
-                <br> <input type="submit" value="리뷰 제출">
+                <br> 
+                <input type="submit" value="리뷰 제출">
 			</form>
 		</div>
 		<div>
@@ -95,46 +96,7 @@
 	</section>
 		
 	<div>
-        <% 
-            // 폼이 submit되면 실행될 코드
-            if(request.getMethod().equals("POST")) {
-                String reviewText = request.getParameter("review");
-                int rating = Integer.parseInt(request.getParameter("rating"));
-
-                Connection conn = null;
-                PreparedStatement pstmt = null;
-
-                try {
-                    // JDBC 드라이버 로딩
-                    Class.forName("com.mysql.jdbc.Driver");
-
-                    // 데이터베이스 연결
-                    String url = "jdbc:mysql://127.0.0.1:3306/projectMovie";
-                    String user = "root";
-                    String password = "root";
-                    conn = DriverManager.getConnection(url, user, password);
-
-                    // SQL 쿼리 실행
-                    String sql = "INSERT INTO review (review_text, rating) VALUES (?, ?)";
-                    pstmt = conn.prepareStatement(sql);
-                    pstmt.setString(1, reviewText);
-                    pstmt.setInt(2, rating);
-                    pstmt.executeUpdate();
-
-                    out.println("<p>리뷰가 성공적으로 저장되었습니다.</p>");
-                } catch (Exception e) {
-                    out.println("<p>오류가 발생했습니다: " + e.getMessage() + "</p>");
-                } finally {
-                    try {
-                        // 리소스 해제
-                        if (pstmt != null) pstmt.close();
-                        if (conn != null) conn.close();
-                    } catch (SQLException se) {
-                        se.printStackTrace();
-                    }
-                }
-            }
-        %>
+        
     </div>	
 	
 	<!-- Footer-->
