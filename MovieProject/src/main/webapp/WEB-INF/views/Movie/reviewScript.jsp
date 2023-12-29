@@ -76,6 +76,8 @@
 	<section>
 		<div>
 			<form method="post" action="reviewList">
+				<input id="user_id" value="${user_id}" name="user_id" hidden="hidden">
+				<input id="movieCd" value="1" name="movieCd" hidden="hidden">
 				<label for="review">리뷰 작성:</label>
 				<input type="text" name="content" size=60 maxlength=30>
 				<label for="score">별점:</label>
