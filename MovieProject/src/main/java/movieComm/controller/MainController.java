@@ -84,6 +84,8 @@ public class MainController {
 	@RequestMapping("movieHistory")
 	public String movieHistory(Model m, HttpSession session) {
 		List<Map<String, String>> tlist = Reservice.title();
+		String userid = (String) session.getAttribute("userid");
+		m.addAttribute("userid",userid);
 		m.addAttribute("tlist",tlist);
 		return "Movie/movieHistory";
 	}
