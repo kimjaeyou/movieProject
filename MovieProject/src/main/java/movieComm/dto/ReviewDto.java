@@ -11,3 +11,4 @@ public class ReviewDto {
 	private String movieCd;
 	
 }
+

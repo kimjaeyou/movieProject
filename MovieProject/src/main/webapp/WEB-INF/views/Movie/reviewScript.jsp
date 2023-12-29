@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>영화 리뷰</title>
+<title>내가 본 영화</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -42,36 +43,22 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">Popular
+									Items</a></li>
 							<li><a class="dropdown-item" href="MovieInfo">New
 									Arrivals</a></li>
 						</ul></li>
 				</ul>
-				<c:if test="${not empty userid}">
-					<form class="d-flex" action="MyPage" method="GET">
-				</c:if>
-				<c:if test="${empty userid}">
-					<form class="d-flex" action="login" method="GET">
-				</c:if>
-				<button class="btn btn-outline-dark" type="submit">
-					<i class="bi-emoji-laughing-fill"></i> MyPage <span
-						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-				</button>
+				<form class="d-flex" action="MyPage" method="GET">
+					<button class="btn btn-outline-dark" type="submit">
+						<i class="bi-emoji-laughing-fill"></i> MyPage <span
+							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+					</button>
 				</form>
-				<c:if test="${empty userid}">
-					<form class="d-flex" action="login" method="GET"
-						style="padding-left: 10px;">
-						<button class="btn btn-outline-dark" type="submit">Login
-						</button>
-					</form>
-				</c:if>
-				<c:if test="${not empty userid}">
-					<form class="d-flex" action="logout" method="GET"
-						style="padding-left: 10px;">
-						<button class="btn btn-outline-dark" type="submit">
-							Logout</button>
-					</form>
-				</c:if>
+				<form class="d-flex" action="login" method="GET"
+					style="padding-left: 10px;">
+					<button class="btn btn-outline-dark" type="submit">Login</button>
+				</form>
 			</div>
 		</div>
 	</nav>
@@ -81,38 +68,41 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">영화 리뷰</p>
+				<p class="lead fw-normal text-white-50 mb-0">리뷰</p>
 			</div>
 		</div>
 	</header>
 
-	<div>
-		<section>
-			<div>
-				<div>
-					<div>영화 사진</div>
-					<div>api 관련 내용</div>
-				</div>
-				<div>리뷰 등록 창</div>
-				<div>
-					<input type="button" value="등록">
-				</div>
-			</div>
-
-		</section>
-	</div>
-	<!-- Section-->
-	<section class="py-5">
+	<section>
 		<div>
-				<p>Rating: ${review.rating}</p>
-    			<p>Review Script: ${review.reviewScript}</p>
+			<form method="post" action="reviewList">
+				<label for="review">리뷰 작성:</label>
+				<input type="text" name="content" size=60 maxlength=30>
+				<label for="score">별점:</label>
+            	<select id="score" name="score" size="1" required>
+                	<option value="1">1</option>
+                	<option value="2">2</option>
+                	<option value="3">3</option>
+                	<option value="4">4</option>
+                	<option value="5">5</option>
+                </select>
+                <br> 
+                <input type="submit" value="리뷰 제출">
+			</form>
+		</div>
+		<div>
+			
 		</div>
 	</section>
+		
+	<div>
+        
+    </div>	
+	
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2023</p>
+			<p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
