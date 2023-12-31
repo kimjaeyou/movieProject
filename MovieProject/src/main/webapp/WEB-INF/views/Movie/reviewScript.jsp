@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,6 @@
 </head>
 <body>
 
-	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="home">Movie=Pro</a>
@@ -35,30 +34,48 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
+						aria-current="page" href="home">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="home">이벤트</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">All
+									Products</a></li>
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="MovieInfo">Popular
 									Items</a></li>
-							<li><a class="dropdown-item" href="MovieInfo">New
-									Arrivals</a></li>
+							<c:if test="${not empty userid}">
+								<li><a class="dropdown-item" href="movieHistory">내가 작성한
+										리뷰</a></li>
+							</c:if>
 						</ul></li>
 				</ul>
-				<form class="d-flex" action="MyPage" method="GET">
-					<button class="btn btn-outline-dark" type="submit">
-						<i class="bi-emoji-laughing-fill"></i> MyPage <span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-					</button>
+				<c:if test="${not empty userid}">
+					<form class="d-flex" action="MyPage" method="GET">
+				</c:if>
+				<c:if test="${empty userid}">
+					<form class="d-flex" action="login" method="GET">
+				</c:if>
+				<button class="btn btn-outline-dark" type="submit">
+					<i class="bi-emoji-laughing-fill"></i> MyPage <span
+						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+				</button>
 				</form>
-				<form class="d-flex" action="login" method="GET"
-					style="padding-left: 10px;">
-					<button class="btn btn-outline-dark" type="submit">Login</button>
-				</form>
+				<c:if test="${empty userid}">
+					<form class="d-flex" action="login" method="GET"
+						style="padding-left: 10px;">
+						<button class="btn btn-outline-dark" type="submit">Login
+						</button>
+					</form>
+				</c:if>
+				<c:if test="${not empty userid}">
+					<form class="d-flex" action="logout" method="GET"
+						style="padding-left: 10px;">
+						<button class="btn btn-outline-dark" type="submit">
+							Logout</button>
+					</form>
+				</c:if>
 			</div>
 		</div>
 	</nav>
@@ -74,37 +91,38 @@
 	</header>
 
 	<section>
-		<div>
-			<form method="post" action="reviewList">
-				<input id="user_id" value="${user_id}" name="user_id" hidden="hidden">
-				<input id="movieCd" value="1" name="movieCd" hidden="hidden">
-				<label for="review">리뷰 작성:</label>
-				<input type="text" name="content" size=60 maxlength=30>
-				<label for="score">별점:</label>
-            	<select id="score" name="score" size="1" required>
-                	<option value="1">1</option>
-                	<option value="2">2</option>
-                	<option value="3">3</option>
-                	<option value="4">4</option>
-                	<option value="5">5</option>
-                </select>
-                <br> 
-                <input type="submit" value="리뷰 제출">
-			</form>
-		</div>
-		<div>
-			
+		<div class="big_frame">
+			<div style="display: inline-block;">
+				<img src="../../../images/HarryPotter_post.jpg"> <span><%=request.getParameter("movieNm")%></span>
+			</div>
+			<div>
+				<form method="post" action="reviewList">
+					<input id="user_id" value="${user_id}" name="user_id"
+						hidden="hidden"> <input id="movieCd"
+						value="<%=request.getParameter("movieCd")%>" name="movieCd"
+						hidden="hidden"> <label for="review">리뷰 작성:</label>
+					<textarea name="content" rows="5" cols="60" maxlength="300"></textarea>
+					<label for="score">별점:</label> <select id="score" name="score"
+						size="1" required>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select> <br> <input type="submit" value="리뷰 제출">
+				</form>
+			</div>
+
 		</div>
 	</section>
-		
-	<div>
-        
-    </div>	
-	
+
+	<div></div>
+
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2023</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->

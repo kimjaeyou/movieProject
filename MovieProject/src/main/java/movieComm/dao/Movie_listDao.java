@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface Movie_listDao {
-	@Select("select movieNm,typeNm from movie_list")
+	@Select("select movieCd, movieNm, prdYear, typeNm from movie_list")
 	List<Map<String, String>> getList();
 }

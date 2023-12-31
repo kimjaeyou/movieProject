@@ -90,12 +90,10 @@
 		<section>
 			<div>
 				<div>
-					<div>영화 사진</div>
-					<div>api 관련 내용</div>
+					<div></div>
 				</div>
-				<div>리뷰 등록 창</div>
 				<div>
-					<input type="button" value="등록">
+					<div></div>
 				</div>
 			</div>
 
@@ -104,8 +102,31 @@
 	<!-- Section-->
 	<section class="py-5">
 		<div>
-				<p>Rating: ${review.rating}</p>
-    			<p>Review Script: ${review.reviewScript}</p>
+			<div style="margin: 3.5% 3.5%;">
+				<c:forEach items="${reviewScript}" var="review">
+					<div style="display:flex; height:120px; overflow:hidden; text-overflow: ellipsis;">
+						<img src="../../../images/HarryPotter_post.jpg" width="10%">
+						<table border="1" width="83%" cellspacing="5">
+							<thead>
+								<tr align="center">
+									<th width="33%">영화 제목</th>
+									<th>리뷰 내용</th>
+									<th width="33%">별점</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr align="center">
+									<td>영화 제목</td>
+									<td>${review.content}</td>
+									<td>${review.score}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br>
+				</c:forEach>
+			</div>
 		</div>
 	</section>
 	<!-- Footer-->

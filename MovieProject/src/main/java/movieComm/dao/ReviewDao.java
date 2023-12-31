@@ -17,5 +17,8 @@ public interface ReviewDao {
 	
 	@Insert("insert into review (score, content, user_id, movieCd) values( #{score}, #{content}, #{user_id}, #{movieCd})")
 	void review(ReviewDto review);
+	
+	@Select("select user_id, content from review where movieCd = #{movieCd, jdbcType=VARCHAR}")
+	List<Map<String, String>>getReview(String movieCd);
 }
 

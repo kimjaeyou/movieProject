@@ -21,16 +21,22 @@ public class ReviewService {
 	
 	public List<Map<String, String>> W_history() {
 		List<Map<String, String>> mlist = Rdao.getList();
-		System.out.println(""+mlist);
 		return mlist;
 	}
 	public List<Map<String, String>> title() {
 		List<Map<String, String>> tlist = mCdao.getList();
-		System.out.println(""+tlist);
 		return tlist;
 	}
 	
 	public void script(ReviewDto review) {
 		Rdao.review(review);
+	}
+	public List<Map<String, String>> getReviewScript() {
+		List<Map<String, String>> reviewScript = Rdao.getList();
+		return reviewScript;
+	}
+	public List<Map<String, String>> getReview(String movieCd) {
+		List<Map<String, String>> getReview = Rdao.getReview(movieCd);
+		return getReview;
 	}
 }

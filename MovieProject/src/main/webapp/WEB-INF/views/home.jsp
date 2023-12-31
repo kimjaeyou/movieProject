@@ -32,7 +32,7 @@
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="MovieInfo">Popular Items</a></li>
                                 <c:if test="${not empty userid}">
-                                	<li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
+                                	<li><a class="dropdown-item" href="movieHistory">내가 작성한 리뷰</a></li>
                                 </c:if>
                             </ul>
                         </li>
@@ -95,11 +95,10 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="movieReview?movieCd=${option.movieCd}&movieNm=${option.movieNm}&prdYear=${option.prdYear}&typeNm=${option.typeNm}">View options</a></div>
                             </div>
                         </div>
                     </div>
-                    
                 </c:forEach>
                 </div>
             </div>
