@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>영화 예매</title>
+<title>영화 포스터</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -34,43 +35,65 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
+						aria-current="page" href="home">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="home">이벤트</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">All
+									Products</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="movieBoard">내가 본 영화</a></li>
-							<li><a class="dropdown-item" href="MovieInfo">New
-									Arrivals</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">Popular
+									Items</a></li>
+							<c:if test="${not empty userid}">
+								<li><a class="dropdown-item" href="movieHistory">내가 작성한
+										리뷰</a></li>
+							</c:if>
 						</ul></li>
 				</ul>
-				<form class="d-flex" action="MyPage" method="GET">
-					<button class="btn btn-outline-dark" type="submit">
-						<i class="bi-emoji-laughing-fill"></i> MyPage <span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-					</button>
+				<c:if test="${not empty userid}">
+					<form class="d-flex" action="MyPage" method="GET">
+				</c:if>
+				<c:if test="${empty userid}">
+					<form class="d-flex" action="login" method="GET">
+				</c:if>
+				<button class="btn btn-outline-dark" type="submit">
+					<i class="bi-emoji-laughing-fill"></i> MyPage <span
+						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+				</button>
 				</form>
-				<form class="d-flex" action="login" method="GET"
-					style="padding-left: 10px;">
-					<button class="btn btn-outline-dark" type="submit">Login</button>
-				</form>
+				<c:if test="${empty userid}">
+					<form class="d-flex" action="login" method="GET"
+						style="padding-left: 10px;">
+						<button class="btn btn-outline-dark" type="submit">Login
+						</button>
+					</form>
+				</c:if>
+				<c:if test="${not empty userid}">
+					<form class="d-flex" action="logout" method="GET"
+						style="padding-left: 10px;">
+						<button class="btn btn-outline-dark" type="submit">
+							Logout</button>
+					</form>
+				</c:if>
 			</div>
 		</div>
 	</nav>
-
 	<!-- Header-->
 	<header class="bg_header">
 		<section id="moviePost">
 			<div>
 				<div id="postText">
-					<h3>대충 영화 제목 가져오는 api</h3>
-					<div>대충 영화 제목 가져오는 api</div>
-					<div>대충 영화 개봉년, 장르, 국가 가져오는 api</div>
-					<div>대충 영화 연령 가져오는 api</div>
-					<div>대충 영화 예매률 가져오는 api</div>
+					<h1>뒤에 있는 포스터는 api로 가져옴</h1>
+					<br>
+					<h3><%=request.getParameter("movieNm")%></h3>
+					<div><%=request.getParameter("movieNm")%></div>
+					<div><%=request.getParameter("prdYear")%>
+						-
+						<%=request.getParameter("typeNm")%></div>
+					<div>대충 DB에서 가져온 영화 연령값 or 아무거나</div>
+					<div>대충 DB에서 가져온 영화 예매률 or 아무거나</div>
 				</div>
 			</div>
 		</section>
@@ -82,23 +105,27 @@
 			<div id="movieCoverLeft">
 				<div>
 					<div id="imgDiv"></div>
-					<div>안녕</div>
 				</div>
 			</div>
 
 			<div id="movieCoverRight">
 				<div>
 					<div>
-						<div id="starValue">평균 별점은 몇점일까요?</div>
+						<div id="starValue">평균 별점 DB에서 가져오기</div>
 					</div>
+					<br> <br>
 					<div>
-						<div>줄거리</div>
+						<div>해리 포터는 위압적인 버논 숙부와 냉담한 이모 페투니아, 욕심 많고 버릇없는 사촌 더들리 밑에서
+							갖은 구박을 견디며 계단 밑 벽장에서 생활한다. 이모네 식구들 역시 해리와의 동거가 불편하기는 마찬가지. 이모
+							페투니아에겐 해리가 이상한(?) 언니 부부에 관한 기억을 떠올리게 만드는 달갑지 않은 존재다. 11살 생일이 며칠
+							앞으로 다가왔지만 한번도 생일파티를 치르거나 제대로 된 생일선물을 받아 본 적이 없는 해리로서는 특별히 신날 것도
+							기대 할 것도 없다. 11살 생일을 며칠 앞둔 어느 날 해리에게 초록색 잉크로 쓰여진 한 통의 편지가 배달된다. 그
+							편지의 내용은 다름 아닌 해리의 11살 생일을 맞이하여 전설적인“호그와트 마법학교”에서 보낸 입학초대장이었다. 그리고
+							해리의 생일을 축하하러 온 거인 해그리드는 해리가 모르고 있었던 해리의 진정한 정체를 알려주는데. 그것은 바로 해리가
+							굉장한 능력을 지닌 마법사라는 것!</div>
+						<div>↑↑↑movie_list에 줄거리를 입력해서 가져오는 방법이 있음↑↑↑</div>
 					</div>
-					<div>
-						<div>
-							<input type="button" value="예매하기">
-						</div>
-					</div>
+					<div></div>
 				</div>
 			</div>
 		</section>
@@ -109,79 +136,37 @@
 		<section id="movieReview">
 			<header>
 				<h3>코멘트</h3>
-				<span>6000+</span>
+				<span>${fn:length(getReview)}</span>
 				<div id="comment_plus">
 					<div>
-						<a href="">더보기</a>
+						<a href="reviewList">더보기</a>
 					</div>
 				</div>
 			</header>
 			<ul id="movieComment">
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
-				<li class="movieCommentList">
-					<div class="commentBox">
-						<div>프로필</div>
-						<div>내용</div>
-						<div>좋아요&댓글수</div>
-						<div>좋아요 버튼</div>
-					</div>
-				</li>
+				<c:forEach items="${getReview}" var="option" varStatus="loop">
+					<c:if test="${loop.index < 8}">
+						<li class="movieCommentList">
+							<div class="commentBox">
+								<div>${option.user_id}</div>
+								<hr>
+								<div class="ellipsis">${option.content}</div>
+								<hr>
+								<div>좋아요&댓글수</div>
+								<hr>
+								<div><input type="button" value="좋아요"></div>
+							</div>
+						</li>
+					</c:if>
+				</c:forEach>
 			</ul>
+			<c:if test="${not empty userid}">
+				<a href="reviewScript?movieCd=${movieCd}&movieNm=${movieNm}"><input
+					type="button" value="리뷰 작성하기"></a>
+			</c:if>
+			<c:if test="${empty userid}">
+				<a href="login"><input type="button" value="리뷰 작성하기"></a>
+			</c:if>
 		</section>
 	</div>
 
@@ -191,40 +176,7 @@
 		<div>영화</div>
 	</aside>
 	</div>
-	<!-- Section-->
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
-			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
-				<c:forEach items="${mlist}" var="option">
-					<div class="col mb-5">
-						<div class="card h-100">
-							<!-- Product image-->
-							<img class="card-img-top" src="../../image/imageMovie.png"
-								alt="..." />
-							<!-- Product details-->
-							<div class="card-body p-4">
-								<div class="text-center">
-									<!-- Product name-->
-									<h5 class="fw-bolder">"${option.movieNm}"</h5>
-									<!-- Product price-->
-									"${option.typeNm}"
-								</div>
-							</div>
-							<!-- Product actions-->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<a class="btn btn-outline-dark mt-auto" href="#">View
-										options</a>
-								</div>
-							</div>
-						</div>
-					</div>
 
-				</c:forEach>
-			</div>
-		</div>
-	</section>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">

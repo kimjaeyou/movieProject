@@ -8,7 +8,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>내가 본 영화</title>
+<title>영화리스트</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -81,7 +81,7 @@
 							<th><img src="../../../images/HarryPotter_post.jpg" alt=""></th>
 							<th>${option.title}</th>
 							<th>별점</th>
-							<th><button id="goto_review">리뷰 작성</button></th>
+							<th><button id="goto_review">리뷰 수정</button></th>
 							<script>
 								document
 										.getElementById('goto_review')
