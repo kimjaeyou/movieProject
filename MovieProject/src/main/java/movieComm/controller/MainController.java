@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
 import movieComm.apiconfig.MovieList;
+import movieComm.apiconfig.MovieList2;
 import movieComm.apiconfig.MoviiAPI;
 import movieComm.dao.Movie_listDao;
 import movieComm.dto.UserDto;
@@ -37,12 +38,15 @@ public class MainController {
 	@RequestMapping({ "home", "/" })
 	public String goMain(Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
-		System.out.println(userid);
 		List<Map<String, String>> mlist = Moservice.reMainList();
 		m.addAttribute("userid", userid);
 		m.addAttribute("mlist", mlist);
-		MovieList list =moviiAPI.searchMovies();
+		MovieList list =moviiAPI.Movies();
 		m.addAttribute("list", list);
+		System.out.println(list);
+		MovieList2 list2 =moviiAPI.BestDailyMovies();
+		m.addAttribute("list2", list2);
+		System.out.println(list2);
 		return "home";
 	}
 
