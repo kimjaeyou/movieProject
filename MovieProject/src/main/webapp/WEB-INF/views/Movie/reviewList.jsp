@@ -16,7 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
+<link href="../../startbootstrap-shop-homepage-gh-pages/css/reviewList.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -106,7 +106,7 @@
 				<c:forEach items="${reviewScript}" var="review">
 					<div style="display:flex; height:120px; overflow:hidden; text-overflow: ellipsis;">
 						<img src="../../../images/HarryPotter_post.jpg" width="10%">
-						<table border="1" width="83%" cellspacing="5">
+						<table border="1" width="100%" cellspacing="5">
 							<thead>
 								<tr align="center">
 									<th width="33%">영화 제목</th>
@@ -118,7 +118,7 @@
 							<tbody>
 								<tr align="center">
 									<td>영화 제목</td>
-									<td>${review.content}</td>
+									<td style="max-width  :100px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${review.content}</td>
 									<td>${review.score}</td>
 								</tr>
 							</tbody>
