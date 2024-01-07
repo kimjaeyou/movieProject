@@ -28,7 +28,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="MovieInfo">All Products</a></li>
+                                <li><a class="dropdown-item" href="reviewList">영화 리뷰</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="MovieInfo">Popular Items</a></li>
                                 <c:if test="${not empty userid}">
@@ -79,7 +79,8 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
-                <c:forEach items="${mlist}" var="option">
+                <c:forEach items="${list.movieListResult.movieList}" var="option">
+                	<c:if test="${option.repGenreNm != '성인물(에로)' && option.genreAlt != ''}">
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
@@ -90,7 +91,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">${option.movieNm}</h5>
                                     <!-- Product price-->
-                                    ${option.typeNm}
+                                    ${option.genreAlt}
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -99,6 +100,7 @@
                             </div>
                         </div>
                     </div>
+                    </c:if>
                 </c:forEach>
                 </div>
             </div>
