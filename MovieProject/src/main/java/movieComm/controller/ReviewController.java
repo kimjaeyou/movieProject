@@ -82,7 +82,7 @@ public class ReviewController {
 	    // 리뷰 목록을 다시 불러와서 모델에 추가
 	    List<Map<String, String>> reviewScript = Reservice.getReviewScript();
 	    m.addAttribute("reviewScript", reviewScript);
-
+	    
 	    return "Movie/reviewList";
 	}
 }
