@@ -8,7 +8,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Homepage - Start Bootstrap Template</title>
+<title>영화 리뷰</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -20,6 +20,7 @@
 	rel="stylesheet" />
 </head>
 <body>
+
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
@@ -33,17 +34,15 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="home">Home</a></li>
+						aria-current="page" href="">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="MovieInfo">All
-									Products</a></li>
+							<li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="MovieInfo">Popular
-									Items</a></li>
+							<li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
 							<li><a class="dropdown-item" href="MovieInfo">New
 									Arrivals</a></li>
 						</ul></li>
@@ -76,38 +75,57 @@
 			</div>
 		</div>
 	</nav>
+
 	<!-- Header-->
 	<header class="bg-dark py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">영화관 예매 시스템</p>
+				<p class="lead fw-normal text-white-50 mb-0">영화 리뷰</p>
 			</div>
 		</div>
 	</header>
+
+	<div>
+		<section>
+			<div>
+				<div>
+					<div></div>
+				</div>
+				<div>
+					<div></div>
+				</div>
+			</div>
+
+		</section>
+	</div>
 	<!-- Section-->
 	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-4 gx-lg-5">
-				<div class="col-lg-12">
-					<div class="text-center">
-						<h2 class="section-heading text-uppercase">MyPage</h2>
+		<div>
+			<div style="margin: 3.5% 3.5%;">
+				<c:forEach items="${reviewScript}" var="review">
+					<div style="display:flex; height:120px; overflow:hidden; text-overflow: ellipsis;">
+						<img src="../../../images/HarryPotter_post.jpg" width="10%">
+						<table border="1" width="83%" cellspacing="5">
+							<thead>
+								<tr align="center">
+									<th width="33%">영화 제목</th>
+									<th>리뷰 내용</th>
+									<th width="33%">별점</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr align="center">
+									<td>영화 제목</td>
+									<td>${review.content}</td>
+									<td>${review.score}</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-					<div class="d-flex justify-content-center mt-4">
-						<div class="card" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">User Information</h5>
-								<ul class="list-group list-group-flush" style="font-size: 24px">
-									<li class="list-group-item">아이디 : ${user.user_id}</li>
-									<li class="list-group-item">성별 : ${user.gender}</li>
-									<li class="list-group-item">나이 : ${user.age}</li>
-									<li class="list-group-item">핸드폰번호 :${user.phoneNum}</li>
-									<!-- 추가로 사용자 정보가 있다면 여기에 추가 -->
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+					<br>
+				</c:forEach>
 			</div>
 		</div>
 	</section>

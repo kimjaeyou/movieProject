@@ -22,30 +22,28 @@ public class LoginConfig {
     public SecurityFilterChain filterChain(HttpSecurity security,HttpSession session) throws Exception {
 
         security.authorizeHttpRequests()
-            .requestMatchers("/normal/**").authenticated()
-            .requestMatchers("/company/**").hasAnyRole("COMPANY", "ADMIN")
-            .requestMatchers("/admin/**").hasRole("ADMIN")
+            .requestMatchers("").authenticated()
             .anyRequest().permitAll()
-            .and().formLogin().loginPage("/login/login").defaultSuccessUrl("/")
+            .and().formLogin().loginPage("/login").defaultSuccessUrl("/")
             .successHandler((request, response, authentication) -> {
                 // 로그인 성공 후 권한에 따라 다른 URI로 리다이렉트
             	
             	session.setAttribute("userid", authentication.getName().toString());
                 if (authentication.getAuthorities().toString().equals("[ROLE_COMPANY]")) {
-                    response.sendRedirect("/company/main");
+                    response.sendRedirect("/company/home");
                 } else if (authentication.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
-                    response.sendRedirect("/admin/price");
+                    response.sendRedirect("/admin/home");
                 } else {
-                    response.sendRedirect("/normal/market");
+                    response.sendRedirect("/home");
                 }
             })
             .and().exceptionHandling().accessDeniedPage("/login/accessDenied")
-            .and().logout().invalidateHttpSession(true).logoutSuccessUrl("/login/login")
+            .and().logout().invalidateHttpSession(true).logoutSuccessUrl("/home")
             .and().sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             .maximumSessions(10) // 동시 세션 제한 수
             .maxSessionsPreventsLogin(false) // 새로운 로그인 허용 여부
-            .expiredUrl("/login/login"); // 세션 만료 시 이동할 URL
+            .expiredUrl("/login"); // 세션 만료 시 이동할 URL
 
         security.userDetailsService(loginUserDetailService);
         security.csrf().disable();

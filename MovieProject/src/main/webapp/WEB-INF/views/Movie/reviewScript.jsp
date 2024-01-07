@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Homepage - Start Bootstrap Template</title>
+<title>내가 본 영화</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -20,7 +21,7 @@
 	rel="stylesheet" />
 </head>
 <body>
-	<!-- Navigation-->
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="home">Movie=Pro</a>
@@ -34,7 +35,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="home">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
+					<li class="nav-item"><a class="nav-link" href="home">이벤트</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
@@ -44,8 +45,10 @@
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="MovieInfo">Popular
 									Items</a></li>
-							<li><a class="dropdown-item" href="MovieInfo">New
-									Arrivals</a></li>
+							<c:if test="${not empty userid}">
+								<li><a class="dropdown-item" href="movieHistory">내가 작성한
+										리뷰</a></li>
+							</c:if>
 						</ul></li>
 				</ul>
 				<c:if test="${not empty userid}">
@@ -76,41 +79,45 @@
 			</div>
 		</div>
 	</nav>
+
 	<!-- Header-->
 	<header class="bg-dark py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">영화관 예매 시스템</p>
+				<p class="lead fw-normal text-white-50 mb-0">리뷰</p>
 			</div>
 		</div>
 	</header>
-	<!-- Section-->
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-4 gx-lg-5">
-				<div class="col-lg-12">
-					<div class="text-center">
-						<h2 class="section-heading text-uppercase">MyPage</h2>
-					</div>
-					<div class="d-flex justify-content-center mt-4">
-						<div class="card" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">User Information</h5>
-								<ul class="list-group list-group-flush" style="font-size: 24px">
-									<li class="list-group-item">아이디 : ${user.user_id}</li>
-									<li class="list-group-item">성별 : ${user.gender}</li>
-									<li class="list-group-item">나이 : ${user.age}</li>
-									<li class="list-group-item">핸드폰번호 :${user.phoneNum}</li>
-									<!-- 추가로 사용자 정보가 있다면 여기에 추가 -->
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+
+	<section>
+		<div class="big_frame">
+			<div style="display: inline-block;">
+				<img src="../../../images/HarryPotter_post.jpg"> <span><%=request.getParameter("movieNm")%></span>
 			</div>
+			<div>
+				<form method="post" action="reviewList">
+					<input id="user_id" value="${user_id}" name="user_id"
+						hidden="hidden"> <input id="movieCd"
+						value="<%=request.getParameter("movieCd")%>" name="movieCd"
+						hidden="hidden"> <label for="review">리뷰 작성:</label>
+					<textarea name="content" rows="5" cols="60" maxlength="300"></textarea>
+					<label for="score">별점:</label> <select id="score" name="score"
+						size="1" required>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select> <br> <input type="submit" value="리뷰 제출">
+				</form>
+			</div>
+
 		</div>
 	</section>
+
+	<div></div>
+
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">

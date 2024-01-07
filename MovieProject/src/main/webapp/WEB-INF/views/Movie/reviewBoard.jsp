@@ -27,9 +27,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="MovieInfo">All Products</a></li>
+                                <li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="MovieInfo">Popular Items</a></li>
+                                <li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
                                 <li><a class="dropdown-item" href="MovieInfo">New Arrivals</a></li>
                             </ul>
                         </li>
@@ -58,6 +58,44 @@
                 </div>
             </div>
         </header>
+        
+        
+        <div>
+        	<div style = "width:100%;">
+        		<div style="display: flex; justify-content: space-around;">
+        			<form>
+        				<select>
+        					<option>HarryPotter1</option>
+        					<option>HarryPotter2</option>
+        					<option>HarryPotter3</option>
+        				</select>
+        				<select>
+        					<option>액션</option>
+        					<option>코미디</option>
+        					<option>로멘스</option>
+        				</select>
+        				<select>
+        					<option>HarryPotter1</option>
+        					<option>HarryPotter2</option>
+        					<option>HarryPotter3</option>
+        					<option>액션</option>
+        					<option>코미디</option>
+        					<option>로멘스</option>
+        				</select>
+        				<span>검색</span><input type="text">
+        			</form>
+        		</div>
+        		<div style = "display:">
+        			<ul style = "display:">
+        				<li><a href="">A</a></li>
+        				<li><a href="">B</a></li>
+        				<li><a href="">C</a></li>
+        				<li><a href="">D</a></li>
+        				<li><a href="">E</a></li>
+        			</ul>
+        		</div>	
+        	</div>
+        </div>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">

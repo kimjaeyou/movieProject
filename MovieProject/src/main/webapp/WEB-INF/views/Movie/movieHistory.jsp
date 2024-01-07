@@ -8,7 +8,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Homepage - Start Bootstrap Template</title>
+<title>영화리스트</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -20,6 +20,7 @@
 	rel="stylesheet" />
 </head>
 <body>
+
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
@@ -33,14 +34,13 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="home">Home</a></li>
+						aria-current="page" href="">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="MovieInfo">All
-									Products</a></li>
+							<li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="MovieInfo">Popular
 									Items</a></li>
@@ -48,69 +48,58 @@
 									Arrivals</a></li>
 						</ul></li>
 				</ul>
-				<c:if test="${not empty userid}">
-					<form class="d-flex" action="MyPage" method="GET">
-				</c:if>
-				<c:if test="${empty userid}">
-					<form class="d-flex" action="login" method="GET">
-				</c:if>
-				<button class="btn btn-outline-dark" type="submit">
-					<i class="bi-emoji-laughing-fill"></i> MyPage <span
-						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-				</button>
+				<form class="d-flex" action="MyPage" method="GET">
+					<button class="btn btn-outline-dark" type="submit">
+						<i class="bi-emoji-laughing-fill"></i> MyPage <span
+							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+					</button>
 				</form>
-				<c:if test="${empty userid}">
-					<form class="d-flex" action="login" method="GET"
-						style="padding-left: 10px;">
-						<button class="btn btn-outline-dark" type="submit">Login
-						</button>
-					</form>
-				</c:if>
-				<c:if test="${not empty userid}">
-					<form class="d-flex" action="logout" method="GET"
-						style="padding-left: 10px;">
-						<button class="btn btn-outline-dark" type="submit">
-							Logout</button>
-					</form>
-				</c:if>
+				<form class="d-flex" action="login" method="GET"
+					style="padding-left: 10px;">
+					<button class="btn btn-outline-dark" type="submit">Login</button>
+				</form>
 			</div>
 		</div>
 	</nav>
+
 	<!-- Header-->
 	<header class="bg-dark py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">영화관 예매 시스템</p>
+				<p class="lead fw-normal text-white-50 mb-0">내가 본 영화</p>
 			</div>
 		</div>
 	</header>
-	<!-- Section-->
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-4 gx-lg-5">
-				<div class="col-lg-12">
-					<div class="text-center">
-						<h2 class="section-heading text-uppercase">MyPage</h2>
-					</div>
-					<div class="d-flex justify-content-center mt-4">
-						<div class="card" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">User Information</h5>
-								<ul class="list-group list-group-flush" style="font-size: 24px">
-									<li class="list-group-item">아이디 : ${user.user_id}</li>
-									<li class="list-group-item">성별 : ${user.gender}</li>
-									<li class="list-group-item">나이 : ${user.age}</li>
-									<li class="list-group-item">핸드폰번호 :${user.phoneNum}</li>
-									<!-- 추가로 사용자 정보가 있다면 여기에 추가 -->
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+
+	<div>
+		<section>
+			<div>
+				<c:forEach items="${tlist}" var="option">
+					<table border="1" width="100%">
+						<tr>
+							<th><img src="../../../images/HarryPotter_post.jpg" alt=""></th>
+							<th>${option.title}</th>
+							<th>별점</th>
+							<th><button id="goto_review">리뷰 수정</button></th>
+							<script>
+								document
+										.getElementById('goto_review')
+										.addEventListener(
+												'click',
+												function() {
+													window.location.href = 'reviewScript';
+												});
+							</script>
+						</tr>
+					</table>
+				</c:forEach>
 			</div>
-		</div>
-	</section>
+
+		</section>
+	</div>
+	<!-- Section-->
+	
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
