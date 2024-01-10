@@ -131,7 +131,7 @@
 	<section class="py-5">
 		<div>
 			<div style="margin: 3.5% 3.5%;">
-				<c:forEach items="${reviewScript}" var="review">
+				<c:forEach items="${point_4}" var="review">
 					<div
 						style="display: flex; height: 120px; overflow: hidden; text-overflow: ellipsis;">
 						<img src="../../../images/HarryPotter_post.jpg" width="10%">

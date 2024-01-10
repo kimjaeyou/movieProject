@@ -10,4 +10,5 @@ import org.apache.ibatis.annotations.Select;
 public interface movieContentDao {
 	@Select("select title from moviecontent")
 	List<Map<String, String>> getList();
+	
 }
