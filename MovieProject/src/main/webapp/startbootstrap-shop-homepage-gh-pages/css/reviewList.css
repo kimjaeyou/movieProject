@@ -12649,14 +12649,40 @@ fieldset:disabled .btn {
 	color: violet;
 }
 
-th, td {
-    border-bottom: 1px solid #444444;
-    padding: 10px;
-    text-align: center;
-  }
-  th:nth-child(2n), td:nth-child(2n) {
-    background-color: #bbdefb;
-  }
-  th:nth-child(2n+1), td:nth-child(2n+1) {
-    background-color: #e3f2fd;
-  }
+th,
+td {
+	border-bottom: 1px solid #444444;
+	padding: 10px;
+	text-align: center;
+}
+
+th:nth-child(2n),
+td:nth-child(2n) {
+	background-color: #bbdefb;
+}
+
+th:nth-child(2n+1),
+td:nth-child(2n+1) {
+	background-color: #e3f2fd;
+}
+
+.searchReview {
+	position: relative;
+	width: 300px;
+}
+
+.searchInput {	
+	width: 100%;
+	border: 1px solid #bbb;
+	border-radius: 8px;
+	padding: 10px 12px;
+	font-size: 14px;
+}
+
+.searchImg {
+	position: absolute;
+	width: 17px;
+	top: 10px;
+	right: 12px;
+	margin: 0;
+}

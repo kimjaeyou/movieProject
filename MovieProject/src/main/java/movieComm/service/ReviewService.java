@@ -39,4 +39,24 @@ public class ReviewService {
 		List<Map<String, String>> getReview = Rdao.getReview(movieCd);
 		return getReview;
 	}
+	public List<Map<String, String>> point_1() {
+		List<Map<String, String>> mlist = Rdao.getP_1();
+		return mlist;
+	}
+	public List<Map<String, String>> point_2() {
+		List<Map<String, String>> mlist = Rdao.getP_2();
+		return mlist;
+	}
+	public List<Map<String, String>> point_3() {
+		List<Map<String, String>> mlist = Rdao.getP_3();
+		return mlist;
+	}
+	public List<Map<String, String>> point_4() {
+		List<Map<String, String>> mlist = Rdao.getP_4();
+		return mlist;
+	}
+	public List<Map<String, String>> point_5() {
+		List<Map<String, String>> mlist = Rdao.getP_5();
+		return mlist;
+	}
 }
