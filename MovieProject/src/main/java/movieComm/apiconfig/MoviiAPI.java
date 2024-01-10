@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import movieComm.kmdbApi.KMovieList;
+
 @Component
 public class MoviiAPI {
 
@@ -47,4 +49,19 @@ public class MoviiAPI {
 		MovieList2 list = restTemplate.getForObject(uri, MovieList2.class);
 		return list;
 	}
+	
+	public KMovieList KmdbMovies() {
+
+		URI uri = UriComponentsBuilder.fromUriString("https://api.koreafilm.or.kr")
+				.path("/openapi-data2/wisenut/search_api/search_json2.jsp")
+				.queryParam("collection", "kmdb_new2")
+				.queryParam("ServiceKey", "G7U7UP0992OID4W1ESGX")
+				.encode()
+				.build()
+				.toUri();
+
+		KMovieList list = restTemplate.getForObject(uri, KMovieList.class);
+		return list;
+	}
+	
 }

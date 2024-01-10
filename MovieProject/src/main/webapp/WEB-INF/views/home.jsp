@@ -145,7 +145,8 @@
 										<!-- Product name-->
 										<h5 class="fw-bolder">${option2.movieNm}</h5>
 										<!-- Product price-->
-										<br>누적 관객수 : ${option2.audiAcc}
+										<br><strong>누적 관객수</strong><br> 
+										 ${option2.audiAcc}
 									</div>
 								</div>
 								<!-- Product actions-->

@@ -15,6 +15,7 @@ import movieComm.apiconfig.MovieList2;
 import movieComm.apiconfig.MoviiAPI;
 import movieComm.dao.Movie_listDao;
 import movieComm.dto.UserDto;
+import movieComm.kmdbApi.KMovieList;
 import movieComm.service.MainService;
 import movieComm.service.MypageService;
 
@@ -58,6 +59,7 @@ public class MainController {
 		m.addAttribute("userid", userid);
 		m.addAttribute("user", user);
 		System.out.println(user);
+		KMovieList list2 =moviiAPI.KmdbMovies();
 		
 		return "Mypage/Info";
 	
