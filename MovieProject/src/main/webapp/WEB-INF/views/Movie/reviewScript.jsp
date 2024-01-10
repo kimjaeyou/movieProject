@@ -17,7 +17,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
+<link
+	href="../../startbootstrap-shop-homepage-gh-pages/css/reviewScript.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -92,27 +93,38 @@
 
 	<section>
 		<div class="big_frame">
-			<div style="display: inline-block;">
-				<img src="../../../images/HarryPotter_post.jpg"> <span><%=request.getParameter("movieNm")%></span>
+			<div class="reviewDiv">
+				<img src="../../../images/HarryPotter_post.jpg">
+				<table id="reviewTable">
+					<thead>
+						<tr>
+							<th><span><%=request.getParameter("movieNm")%></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>대충 줄거리</td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="reviewDiv_div">
+					<form id="reviewForm"method="post" action="reviewList">
+						<input id="user_id" value="${user_id}" name="user_id"hidden="hidden">
+						<input id="movieCd"value="<%=request.getParameter("movieCd")%>" name="movieCd" hidden="hidden"> <label for="review"></label>
+						<textarea name="content"></textarea>
+						<div>
+							<label for="score">별점:</label> <select id="score" name="score"
+								size="1" required>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select> <br> <input type="submit" value="리뷰 제출">
+						</div>
+					</form>
+				</div>
 			</div>
-			<div>
-				<form method="post" action="reviewList">
-					<input id="user_id" value="${user_id}" name="user_id"
-						hidden="hidden"> <input id="movieCd"
-						value="<%=request.getParameter("movieCd")%>" name="movieCd"
-						hidden="hidden"> <label for="review">리뷰 작성:</label>
-					<textarea name="content" rows="5" cols="60" maxlength="300"></textarea>
-					<label for="score">별점:</label> <select id="score" name="score"
-						size="1" required>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select> <br> <input type="submit" value="리뷰 제출">
-				</form>
-			</div>
-
 		</div>
 	</section>
 

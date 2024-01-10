@@ -17,7 +17,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
+<link href="../../startbootstrap-shop-homepage-gh-pages/css/movieReview.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -152,7 +152,9 @@
 								<hr>
 								<div class="ellipsis">${option.content}</div>
 								<hr>
-								<div>좋아요&댓글수</div>
+								<div>
+								<img src="../../../images/like.png"><em>0</em>&nbsp;<img src="../../../images/comment.png"><em>0</em>
+								</div>
 								<hr>
 								<div><input type="button" value="좋아요"></div>
 							</div>
