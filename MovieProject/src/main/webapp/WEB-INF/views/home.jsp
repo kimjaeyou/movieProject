@@ -41,7 +41,7 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="reviewList">영화 리뷰</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="MovieInfo">주간 박스오피스</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">박스오피스</a></li>
 							<c:if test="${not empty userid}">
 								<li><a class="dropdown-item" href="movieHistory">내가 작성한
 										리뷰</a></li>
@@ -127,10 +127,8 @@
 			<hr class="my-4" />
 			<!-- Display weekly box office message -->
 			<div class="text-center">
-				<h2 class="display-4 fw-bolder">박스 오피스</h2><br>
+				<h2 class="display-4 fw-bolder">오늘의 박스 오피스</h2><br>
 			</div>
-			<!-- Add the weekly box office information here -->
-			<!-- Example: -->
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
 			<c:forEach items="${list2.boxOfficeResult.dailyBoxOfficeList}" var="option2">

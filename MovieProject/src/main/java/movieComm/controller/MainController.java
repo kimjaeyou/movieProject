@@ -59,7 +59,7 @@ public class MainController {
 		m.addAttribute("userid", userid);
 		m.addAttribute("user", user);
 		System.out.println(user);
-		KMovieList list2 =moviiAPI.KmdbMovies();
+		String list2 =moviiAPI.KmdbMovies();
 		
 		return "Mypage/Info";
 	
