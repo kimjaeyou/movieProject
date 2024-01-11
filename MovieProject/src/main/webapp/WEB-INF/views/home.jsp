@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Homepage - Start Bootstrap Template</title>
+        <title>영화리뷰사이트</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -36,6 +36,7 @@
                                 </c:if>
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
                     </ul>
                     <c:if test="${not empty userid}">
                     	<form class="d-flex" action="MyPage" method="GET">
