@@ -1,15 +1,13 @@
 package movieComm.kmdbApi;
 
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
-public class plot {
-	@JsonProperty("plotLang")
-	String plotLang;
-	@JsonProperty("plotText")
-	String plotText;
-	
+public class RatingWrapper {
+	@JsonProperty("rating")
+	ArrayList<Rating> rating;
 }

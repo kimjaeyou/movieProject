@@ -57,11 +57,11 @@ public class MoviiAPI {
 		RestTemplate restTemplate = new RestTemplate();
 		String list = restTemplate.getForObject(uri, String.class);
 		list = list.trim();
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
-        try {
+		try {
 			KMovieList kmovieList = objectMapper.readValue(list, KMovieList.class);
-			System.out.println(kmovieList.getQuery());
+			System.out.println("check : " + kmovieList);
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,10 +69,7 @@ public class MoviiAPI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(list);
 
-		// KMovieList list = restTemplate.getForObject(uri, KMovieList.class);
-		// System.out.println(list);
 		return "";
 	}
 

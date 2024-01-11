@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class ActorWrapper {
-	@JsonProperty("actor")
-	ArrayList<Actor> actor;
+public class CommCodeWrapper {
+	@JsonProperty("CommCode")
+	ArrayList<CommCode> commCode;
 }

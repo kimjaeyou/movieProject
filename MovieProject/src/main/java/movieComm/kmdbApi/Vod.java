@@ -1,13 +1,14 @@
 package movieComm.kmdbApi;
 
-import java.util.ArrayList;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
-public class ActorWrapper {
-	@JsonProperty("actor")
-	ArrayList<Actor> actor;
+public class Vod {
+	@JsonProperty("vodClass")
+	String vodClass;
+
+	@JsonProperty("vodUrl")
+	String vodUrl;
 }
