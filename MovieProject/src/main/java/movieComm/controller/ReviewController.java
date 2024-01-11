@@ -72,7 +72,7 @@ public class ReviewController {
 	public String reviewList(Model m, ReviewDto review, RedirectAttributes redirectAttributes) {
 	    // 리뷰를 저장하는 메서드 호출
 	    Reservice.script(review);
-
+	    
 	    // POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
 	    return "redirect:/reviewList";
 	}
@@ -84,5 +84,35 @@ public class ReviewController {
 	    m.addAttribute("reviewScript", reviewScript);
 	    
 	    return "Movie/reviewList";
+	}
+	@RequestMapping("reviewPoint_1")
+	public String reviewPoint_1(Model m) {
+		List<Map<String,String>> point_1 = Reservice.point_1();
+		m.addAttribute("point_1", point_1);
+		return "Movie/reviewPoint_1";
+	}
+	@RequestMapping("reviewPoint_2")
+	public String reviewPoint_2(Model m) {
+		List<Map<String,String>> point_2 = Reservice.point_2();
+		m.addAttribute("point_2", point_2);
+		return "Movie/reviewPoint_2";
+	}
+	@RequestMapping("reviewPoint_3")
+	public String reviewPoint_3(Model m) {
+		List<Map<String,String>> point_3 = Reservice.point_3();
+		m.addAttribute("point_3", point_3);
+		return "Movie/reviewPoint_3";
+	}
+	@RequestMapping("reviewPoint_4")
+	public String reviewPoint_4(Model m) {
+		List<Map<String,String>> point_4 = Reservice.point_4();
+		m.addAttribute("point_4", point_4);
+		return "Movie/reviewPoint_4";
+	}
+	@RequestMapping("reviewPoint_5")
+	public String reviewPoint_5(Model m) {
+		List<Map<String,String>> point_5 = Reservice.point_5();
+		m.addAttribute("point_5", point_5);
+		return "Movie/reviewPoint_5";
 	}
 }
