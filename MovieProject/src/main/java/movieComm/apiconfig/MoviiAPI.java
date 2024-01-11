@@ -61,6 +61,7 @@ public class MoviiAPI {
 				.toUri();
 
 		KMovieList list = restTemplate.getForObject(uri, KMovieList.class);
+		System.out.println(list);
 		return list;
 	}
 	
