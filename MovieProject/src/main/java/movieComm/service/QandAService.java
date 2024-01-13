@@ -22,5 +22,6 @@ public class QandAService {
     
 	public QandADto getQandAOne(int qaID) {
         return m.getQandAOne(qaID);
+        
     }
 }
