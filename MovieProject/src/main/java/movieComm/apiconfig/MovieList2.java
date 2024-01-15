@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class MovieList2 {
-	MovieListResult2 boxOfficeResult;
+	public MovieListResult2 boxOfficeResult;
 }

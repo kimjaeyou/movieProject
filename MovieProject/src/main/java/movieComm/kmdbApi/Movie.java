@@ -1,6 +1,6 @@
 package movieComm.kmdbApi;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -138,7 +138,7 @@ public class Movie {
 	CommCodeWrapper CommCodes;
 	
 	@JsonProperty("stat")
-	ArrayList<Stat> stat;
+	List<Stat> stat;
 	
 	@JsonProperty("directors")
 	DirectorWrapper directors;

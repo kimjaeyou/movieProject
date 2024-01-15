@@ -1,6 +1,7 @@
 package movieComm.kmdbApi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,5 +19,5 @@ public class Datalist {
 	int Count;
 	
 	@JsonProperty("Result")
-	ArrayList<Movie> Result = new ArrayList<Movie>();
+	List<Movie> Result = new ArrayList<Movie>();
 }
