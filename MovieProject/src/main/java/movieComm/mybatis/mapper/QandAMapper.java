@@ -5,13 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import movieComm.dto.QandADto;
+import movieComm.dto.QADto;
 
 @Repository("QandAMapper")
 @Mapper
 public interface QandAMapper {
-    public boolean addQandA(QandADto QA);
-    public List<QandADto> getQandADto();
-    public QandADto getQandAOne(int qaID);
+    public boolean addQandA(QADto QA);
+    public List<QADto> getQandADto();
+    public QADto getQandAOne(int qaID);
 
 }
