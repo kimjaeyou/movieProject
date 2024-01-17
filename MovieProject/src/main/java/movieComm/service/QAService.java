@@ -14,7 +14,7 @@ import movieComm.mybatis.mapper.QandAMapper;
 @Service
 public class QAService {
     @Autowired QADao dao;
-	
+    
     public int total() {
     	return dao.total();
     }

@@ -21,7 +21,7 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 			    $("#writeBtn").click(function(){
-			    	location.href ="write";
+			    	location.href ="/QandA/write";
 			    })
 			    $.ajax({url: "QandAList", success: function(result){             
 			        var html = "";
@@ -125,6 +125,7 @@
     	    	</tr>
     	    	</thead>
     	    	<tbody id = "listArea">
+    	    	
 		        </tbody>
 		   	</table>
 			<button type="button" class="btn btn-primary" id = "writeBtn">글쓰기</button>
