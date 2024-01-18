@@ -98,8 +98,7 @@
 						<div class="col mb-5">
 							<div class="card h-100">
 								<!-- Product image-->
-								<img class="card-img-top" src="../../image/imageMovie.png"
-									alt="..." />
+								<img class="card-img-top" src="../../image/imageMovie.png" alt="..." />
 								<!-- Product details-->
 								<div class="card-body p-4">
 									<div class="text-center">
@@ -113,8 +112,8 @@
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="text-center">
 										<a class="btn btn-outline-dark mt-auto"
-											href="movieReview?movieCd=${option.movieCd}&movieNm=${option.movieNm}&prdYear=${option.prdYear}&typeNm=${option.typeNm}">View
-											options</a>
+											href="movieReview?movieCd=${option.movieCd}&movieNm=${option.movieNm}&prdYear=${option.prdYear}&typeNm=${option.typeNm}">
+											View options</a>
 									</div>
 								</div>
 							</div>
@@ -126,7 +125,7 @@
 			<hr class="my-4" />
 			<!-- Display weekly box office message -->
 			<div class="text-center">
-				<h2 class="display-4 fw-bolder">오늘의 박스 오피스</h2><br>
+				<h2 class="display-4 fw-bolder">오늘의 박스오피스</h2><br>
 			</div>
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">

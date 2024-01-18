@@ -95,7 +95,7 @@
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
-									<a class="btn btn-outline-dark mt-auto" href="home">View options</a>
+									<a class="btn btn-outline-dark mt-auto" href="movieReview?movieSeq=${option.movieSeq}">View options</a>
 								</div>
 							</div>
 						</div>

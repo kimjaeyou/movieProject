@@ -89,8 +89,11 @@ public class MoviiAPI {
 
 		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
 				.path("/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json")
-				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130").queryParam("targetDt", formattedDate).encode()
-				.build().toUri();
+				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
+				.queryParam("targetDt", formattedDate)
+				.encode()
+				.build()
+				.toUri();
 
 		MovieList2 list = restTemplate.getForObject(uri, MovieList2.class);
 		return list;
@@ -129,6 +132,38 @@ public class MoviiAPI {
 		return null;
 	}
 	
+	
+	public KMovieList KmdbMoviesSeq(String str) {
+
+		URI uri = UriComponentsBuilder.fromUriString("https://api.koreafilm.or.kr")
+				.path("/openapi-data2/wisenut/search_api/search_json2.jsp")
+				.queryParam("collection", "kmdb_new2")
+				.queryParam("ServiceKey", "G7U7UP0992OID4W1ESGX")
+				.queryParam("movieSeq", str)
+				.queryParam("listCount", 100)
+				.encode()
+				.build()
+				.toUri();
+
+		RestTemplate restTemplate = new RestTemplate();
+		String list = restTemplate.getForObject(uri, String.class);
+		list = list.trim();
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			KMovieList kmovieList = objectMapper.readValue(list, KMovieList.class);
+			return kmovieList;
+			
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 	
 	
 	
