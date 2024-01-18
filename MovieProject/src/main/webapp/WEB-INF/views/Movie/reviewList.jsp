@@ -16,8 +16,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
+<link
+	href="../../startbootstrap-shop-homepage-gh-pages/css/reviewList.css"
 	rel="stylesheet" />
+
 </head>
 <body>
 
@@ -45,7 +47,7 @@
 							<li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
 							<li><a class="dropdown-item" href="MovieInfo">New
 									Arrivals</a></li>
-						</ul></li>
+						</ul>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -90,36 +92,66 @@
 		<section>
 			<div>
 				<div>
-					<div></div>
+					<form method="get" action="search.php">
+						<div class="searchReview">
+							<input class="searchInput" type="text" name="stx"
+								placeholder="제목 입력"> <img class="searchImg"
+								src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+								alt="Submit">
+						</div>
+					</form>
 				</div>
 				<div>
 					<div></div>
 				</div>
 			</div>
 
+			<div class="searchLine">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">별점검색</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="reviewPoint_1">1점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_2">2점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_3">3점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_4">4점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_5">5점</a></li>
+						</ul>
+				</ul>
+			</div>
 		</section>
 	</div>
+
 	<!-- Section-->
 	<section class="py-5">
 		<div>
 			<div style="margin: 3.5% 3.5%;">
 				<c:forEach items="${reviewScript}" var="review">
-					<div style="display:flex; height:120px; overflow:hidden; text-overflow: ellipsis;">
+					<div
+						style="display: flex; height: 120px; overflow: hidden; text-overflow: ellipsis;">
 						<img src="../../../images/HarryPotter_post.jpg" width="10%">
-						<table border="1" width="83%" cellspacing="5">
+						<table border="1" width="100%" cellspacing="5">
 							<thead>
 								<tr align="center">
-									<th width="33%">영화 제목</th>
-									<th>리뷰 내용</th>
-									<th width="33%">별점</th>
+									<th width="15%">영화 코드</th>
+									<th width="40%">리뷰 내용</th>
+									<th width="15%">별점</th>
+									<th width="30%">작성자</th>
 								</tr>
 							</thead>
 
 							<tbody>
 								<tr align="center">
-									<td>영화 제목</td>
-									<td>${review.content}</td>
+									<td>${review.movieCd}</td>
+									<td
+										style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${review.content}</td>
 									<td>${review.score}</td>
+									<td>${review.user_id}</td>
 								</tr>
 							</tbody>
 						</table>

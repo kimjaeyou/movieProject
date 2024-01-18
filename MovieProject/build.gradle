@@ -59,6 +59,10 @@ dependencies {
    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.4.9'
 
+   implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5' 
+   
+   // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+   implementation group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
    
 }
 

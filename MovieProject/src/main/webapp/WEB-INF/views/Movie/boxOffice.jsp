@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>내가 본 영화</title>
+<title>Homepage - Start Bootstrap Template</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -17,12 +17,11 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link
-	href="../../startbootstrap-shop-homepage-gh-pages/css/reviewScript.css"
+<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
 	rel="stylesheet" />
 </head>
 <body>
-
+	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="home">Movie=Pro</a>
@@ -36,7 +35,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="home">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="home">이벤트</a></li>
+					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
@@ -46,90 +45,68 @@
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="MovieInfo">Popular
 									Items</a></li>
-							<c:if test="${not empty userid}">
-								<li><a class="dropdown-item" href="movieHistory">내가 작성한
-										리뷰</a></li>
-							</c:if>
+							<li><a class="dropdown-item" href="MovieInfo">New
+									Arrivals</a></li>
 						</ul></li>
 				</ul>
-				<c:if test="${not empty userid}">
-					<form class="d-flex" action="MyPage" method="GET">
-				</c:if>
-				<c:if test="${empty userid}">
-					<form class="d-flex" action="login" method="GET">
-				</c:if>
-				<button class="btn btn-outline-dark" type="submit">
-					<i class="bi-emoji-laughing-fill"></i> MyPage <span
-						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-				</button>
+				<form class="d-flex" action="MyPage" method="GET">
+					<button class="btn btn-outline-dark" type="submit">
+						<i class="bi-emoji-laughing-fill"></i> MyPage <span
+							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+					</button>
 				</form>
-				<c:if test="${empty userid}">
-					<form class="d-flex" action="login" method="GET"
-						style="padding-left: 10px;">
-						<button class="btn btn-outline-dark" type="submit">Login
-						</button>
-					</form>
-				</c:if>
-				<c:if test="${not empty userid}">
-					<form class="d-flex" action="logout" method="GET"
-						style="padding-left: 10px;">
-						<button class="btn btn-outline-dark" type="submit">
-							Logout</button>
-					</form>
-				</c:if>
+				<form class="d-flex" action="login" method="GET"
+					style="padding-left: 10px;">
+					<button class="btn btn-outline-dark" type="submit">Login</button>
+				</form>
 			</div>
 		</div>
 	</nav>
-
 	<!-- Header-->
 	<header class="bg-dark py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">리뷰</p>
+				<p class="lead fw-normal text-white-50 mb-0">영화관 리뷰 시스템</p>
 			</div>
 		</div>
 	</header>
-
-	<section>
-		<div class="big_frame">
-			<div class="reviewDiv">
-				<img src="../../../images/HarryPotter_post.jpg">
-				<table id="reviewTable">
-					<thead>
-						<tr>
-							<th><span><%=request.getParameter("movieNm")%></span></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>대충 줄거리</td>
-						</tr>
-					</tbody>
-				</table>
-				<div id="reviewDiv_div">
-					<form id="reviewForm"method="post" action="reviewList">
-						<input id="user_id" value="${user_id}" name="user_id"hidden="hidden">
-						<input id="movieCd"value="<%=request.getParameter("movieCd")%>" name="movieCd" hidden="hidden"> <label for="review"></label>
-						<textarea name="content"></textarea>
-						<div>
-							<label for="score">별점:</label> <select id="score" name="score"
-								size="1" required>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select> <br> <input type="submit" value="리뷰 제출">
+	<!-- Section-->
+	<section class="py-5">
+		<div class="text-center">
+			<h2 class="display-4 fw-bolder">오늘의 박스오피스</h2>
+		</div>
+		<div class="container px-4 px-lg-5 mt-5">
+			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<c:forEach items="${list}" var="option">
+					<div class="col mb-5">
+						<div class="card h-100">
+							<!-- Product image-->
+							<img class="card-img-top" src=${option.poster} alt="..." />
+							<!-- Product details-->
+							<div class="card-body p-4">
+								<div class="text-center">
+									<!-- Product name-->
+									<h5 class="fw-bolder">${option.title}</h5>
+									<!-- Product price-->
+									${option.genre}
+								</div>
+							</div>
+							<!-- Product actions-->
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center">
+									<a class="btn btn-outline-dark mt-auto" href="movieReview?movieSeq=${option.movieSeq}">View options</a>
+								</div>
+							</div>
 						</div>
-					</form>
-				</div>
+					</div>
+
+				</c:forEach>
+
 			</div>
+
 		</div>
 	</section>
-
-	<div></div>
-
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">

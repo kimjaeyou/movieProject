@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +8,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>내가 본 영화</title>
+<title>영화 리뷰</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Bootstrap icons-->
@@ -18,11 +17,13 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link
-	href="../../startbootstrap-shop-homepage-gh-pages/css/reviewScript.css"
+	href="../../startbootstrap-shop-homepage-gh-pages/css/reviewList.css"
 	rel="stylesheet" />
+
 </head>
 <body>
 
+	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="home">Movie=Pro</a>
@@ -35,22 +36,18 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="home">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="home">이벤트</a></li>
+						aria-current="page" href="">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="MovieInfo">All
-									Products</a></li>
+							<li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="MovieInfo">Popular
-									Items</a></li>
-							<c:if test="${not empty userid}">
-								<li><a class="dropdown-item" href="movieHistory">내가 작성한
-										리뷰</a></li>
-							</c:if>
-						</ul></li>
+							<li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">New
+									Arrivals</a></li>
+						</ul>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -86,50 +83,84 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">리뷰</p>
+				<p class="lead fw-normal text-white-50 mb-0">영화 리뷰</p>
 			</div>
 		</div>
 	</header>
 
-	<section>
-		<div class="big_frame">
-			<div class="reviewDiv">
-				<img src="../../../images/HarryPotter_post.jpg">
-				<table id="reviewTable">
-					<thead>
-						<tr>
-							<th><span><%=request.getParameter("movieNm")%></span></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>대충 줄거리</td>
-						</tr>
-					</tbody>
-				</table>
-				<div id="reviewDiv_div">
-					<form id="reviewForm"method="post" action="reviewList">
-						<input id="user_id" value="${user_id}" name="user_id"hidden="hidden">
-						<input id="movieCd"value="<%=request.getParameter("movieCd")%>" name="movieCd" hidden="hidden"> <label for="review"></label>
-						<textarea name="content"></textarea>
-						<div>
-							<label for="score">별점:</label> <select id="score" name="score"
-								size="1" required>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select> <br> <input type="submit" value="리뷰 제출">
+	<div>
+		<section>
+			<div>
+				<div>
+					<form method="get" action="search.php">
+						<div class="searchReview">
+							<input class="searchInput" type="text" name="stx"
+								placeholder="제목 입력"> <img class="searchImg"
+								src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+								alt="Submit">
 						</div>
 					</form>
 				</div>
+				<div>
+					<div></div>
+				</div>
+			</div>
+
+			<div class="searchLine">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">별점검색</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="reviewPoint_1">1점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_2">2점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_3">3점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_4">4점</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="reviewPoint_5">5점</a></li>
+						</ul>
+				</ul>
+			</div>
+		</section>
+	</div>
+
+	<!-- Section-->
+	<section class="py-5">
+		<div>
+			<div style="margin: 3.5% 3.5%;">
+				<c:forEach items="${point_4}" var="review">
+					<div
+						style="display: flex; height: 120px; overflow: hidden; text-overflow: ellipsis;">
+						<img src="../../../images/HarryPotter_post.jpg" width="10%">
+						<table border="1" width="100%" cellspacing="5">
+							<thead>
+								<tr align="center">
+									<th width="15%">영화 코드</th>
+									<th width="40%">리뷰 내용</th>
+									<th width="15%">별점</th>
+									<th width="30%">작성자</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr align="center">
+									<td>${review.movieCd}</td>
+									<td
+										style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${review.content}</td>
+									<td>${review.score}</td>
+									<td>${review.user_id}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br>
+				</c:forEach>
 			</div>
 		</div>
 	</section>
-
-	<div></div>
-
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
