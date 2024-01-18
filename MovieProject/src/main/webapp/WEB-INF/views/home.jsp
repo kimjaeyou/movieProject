@@ -94,8 +94,7 @@
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
 				<c:forEach items="${list.movieListResult.movieList}" var="option">
-					<c:if
-						test="${option.repGenreNm != '성인물(에로)' && option.genreAlt != '' && option.openDt !=' '}">
+					<c:if test="${not empty option.genreAlt and not empty option.openDt and !(option.genreAlt eq '성인물(에로)')}">
 						<div class="col mb-5">
 							<div class="card h-100">
 								<!-- Product image-->

@@ -1,5 +1,6 @@
 package movieComm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
+import movieComm.DataStructure.MovieStructure;
 import movieComm.apiconfig.MovieList;
 import movieComm.apiconfig.MovieList2;
 import movieComm.apiconfig.MoviiAPI;
@@ -59,7 +61,7 @@ public class MainController {
 	@RequestMapping("MovieInfo")
 	public String MovieInfo(Model model) throws Exception{
 		
-		MovieList2 listArr = boxService.searchMovive();
+		ArrayList<MovieStructure> listArr = boxService.searchMovive();
 		
 		model.addAttribute("list", listArr);
 		return "Movie/boxOffice";
