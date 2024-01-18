@@ -96,7 +96,7 @@
 					</div>
 					<div class= "container">
     	<div class= "row">
-    		<form method="post" action="writeAction.jsp">
+    		<form method="post" action="/QandA/write">
     			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
 			    	<tbody>
 			    		<tr>

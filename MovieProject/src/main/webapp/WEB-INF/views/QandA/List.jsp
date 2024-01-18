@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -18,10 +19,14 @@
 		<!-- Core theme CSS (includes Bootstrap)-->
 		<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
 			rel="stylesheet" />
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 			    $("#writeBtn").click(function(){
+			    	if(${userID} !== null){
 			    	location.href ="/QandA/write";
+			    	}
+			    	else{location.href = "login";}
 			    })
 			    $.ajax({url: "QandAList", success: function(result){             
 			        var html = "";
@@ -125,10 +130,17 @@
     	    	</tr>
     	    	</thead>
     	    	<tbody id = "listArea">
-    	    	
+    	    	<c:forEach items="${QAList}" var="board">
+                    <tr>
+                        <td>${board.qaID }</td>
+                        <td><a href ="content/${board.no}">${board.qaTitle}</a></td>
+                        <td>${board.userID}</td>
+                        <td><fmt:formatDate value="${board.registeredDate}" dateStyle="short"/> </td>
+                    </tr>
+                </c:forEach>
 		        </tbody>
 		   	</table>
-			<button type="button" class="btn btn-primary" id = "writeBtn">글쓰기</button>
+			<button type="button" class="btn btn-primary" id = "writeBtn" >글쓰기</button>
     	</div>
     </div>
 				</div>

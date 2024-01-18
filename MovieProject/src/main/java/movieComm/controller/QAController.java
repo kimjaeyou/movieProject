@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.mail.Service;
+import jakarta.servlet.http.HttpSession;
 import movieComm.dto.QADto;
 import movieComm.dto.UserDto;
 import movieComm.service.QAService;
@@ -43,12 +44,13 @@ public class QAController {
 	@PostMapping("/QandA/write")
 	public String write(QADto dto) {
 		Qa.insert(dto);
-		return "redirect:/QandA/List";
+		return "redirect:/QandA";
 	}
 	
 	@RequestMapping("QandA")
-	public String List(@RequestParam(name = "P", defaultValue = "1") int page, Model m) {
+	public String List(HttpSession session, @RequestParam(name = "P", defaultValue = "1") int page, Model m) {
 		int total = Qa.total();
+		String userID = (String) session.getAttribute("userid");
 		if(total > 0) {
 			int perPage = 10;
 			int startRow = (page - 1) * perPage;
@@ -71,6 +73,7 @@ public class QAController {
 			m.addAttribute("totalPages", totalPages);
 		}
 		m.addAttribute("total", total);
+		m.addAttribute("userID", userID);
 		return "QandA/List";
 	}
 	
