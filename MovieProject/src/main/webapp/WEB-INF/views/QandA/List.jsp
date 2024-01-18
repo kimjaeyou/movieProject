@@ -26,10 +26,10 @@
 			    $("#writeBtn").click(function(){
 					var id="${userID}";
 					
-			    	if(id == null)
-			    	location.href ="/QandA/write";
-			    	else
-			    	location.href = "login";
+			    	if(id == "")
+			    		location.href ="login";
+			    	else if(id !== "")
+			    		location.href ="/QandA/write";
 			    })
 			    $.ajax({url: "QandAList", success: function(result){             
 			        var html = "";
