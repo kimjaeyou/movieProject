@@ -19,14 +19,17 @@
 		<!-- Core theme CSS (includes Bootstrap)-->
 		<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
 			rel="stylesheet" />
+		
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 			    $("#writeBtn").click(function(){
-			    	if(${userID} !== null){
+					var id="${userID}";
+					
+			    	if(id == null)
 			    	location.href ="/QandA/write";
-			    	}
-			    	else{location.href = "login";}
+			    	else
+			    	location.href = "login";
 			    })
 			    $.ajax({url: "QandAList", success: function(result){             
 			        var html = "";
