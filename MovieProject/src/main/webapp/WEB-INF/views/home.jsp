@@ -130,11 +130,11 @@
 			</div>
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
-			<c:forEach items="${list2.boxOfficeResult.dailyBoxOfficeList}" var="option2">
+			<c:forEach items="${list2}" var="option2">
 						<div class="col mb-5">
 							<div class="card h-100">
 								<!-- Product image-->
-								<img class="card-img-top" src="../../image/imageMovie.png"
+								<img class="card-img-top" src=${option2.poster}
 									alt="..." />
 								<!-- Product details-->
 								<div class="card-body p-4">

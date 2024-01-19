@@ -26,7 +26,7 @@ public class MoviiAPI {
 		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
 				.path("/kobisopenapi/webservice/rest/movie/searchMovieList.json")
 				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
-				.queryParam("itemPerPage",100)
+				.queryParam("itemPerPage",70)
 				.encode()
 				.build()
 				.toUri();
