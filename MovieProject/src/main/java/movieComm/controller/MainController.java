@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import movieComm.DataFormating.DaillyFormat;
+import movieComm.DataFormating.MovieFormat;
 import movieComm.DataStructure.DaillyStructure;
 import movieComm.DataStructure.MovieStructure;
 import movieComm.apiconfig.MovieList;
@@ -47,6 +48,8 @@ public class MainController {
 	@Autowired
 	DaillyFormat dayFormat;
 	
+	@Autowired
+	MovieFormat movieFormat;
 
 	@RequestMapping({ "home", "/" })
 	public String goMain(Model m, HttpSession session) {
@@ -56,7 +59,8 @@ public class MainController {
 		m.addAttribute("userid", userid);
 		m.addAttribute("mlist", mlist);
 		
-		MovieList list =moviiAPI.Movies();
+		//MovieList list =moviiAPI.Movies();
+		ArrayList<MovieStructure> list = movieFormat.reMovies();// 포맷팅 데이터
 		m.addAttribute("list", list);
 		
 		ArrayList<DaillyStructure> list2 = dayFormat.reDailly();//오늘의박스 오피스 포맷팅 데이터
