@@ -40,9 +40,13 @@ public class ReviewController {
 	MoviiAPI moApi;
 
 	@RequestMapping("movieReview")
+
 	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
 		String poster = null;
 		String str=null;
+
+	public String Review(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String prdYear,@RequestParam String typeNm, Model m, HttpSession session) {
+
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
 		m.addAttribute("getReview", getReview);
