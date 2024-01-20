@@ -31,7 +31,7 @@ public class ReviewController {
 	ReviewService Reservice;
 	
 	@RequestMapping("movieReview")
-	public String Review(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam int prdYear,@RequestParam String typeNm, Model m, HttpSession session) {
+	public String Review(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String prdYear,@RequestParam String typeNm, Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
 		m.addAttribute("getReview", getReview);
