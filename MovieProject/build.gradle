@@ -26,6 +26,7 @@ dependencies {
    compileOnly 'org.projectlombok:lombok'
    developmentOnly 'org.springframework.boot:spring-boot-devtools'
    runtimeOnly 'com.mysql:mysql-connector-j'
+   runtimeOnly 'org.webjars:bootstrap:4.5.0'
    annotationProcessor 'org.projectlombok:lombok'
    testImplementation 'org.springframework.boot:spring-boot-starter-test'
    testImplementation 'org.springframework.security:spring-security-test'
@@ -59,6 +60,9 @@ dependencies {
    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.4.9'
 
    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5' 
+   
+   // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+   implementation group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
    
 }
 

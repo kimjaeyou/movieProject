@@ -1,25 +1,24 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>Homepage - Start Bootstrap Template</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<!-- Bootstrap icons-->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-	rel="stylesheet" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
-	rel="stylesheet" />
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>영화리뷰사이트-Q&A게시판</title>
+		<!-- Favicon-->
+		<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+		<!-- Bootstrap icons-->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+			rel="stylesheet" />
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
+			rel="stylesheet" />
+	</head>
 <body>
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,17 +47,33 @@
 							<li><a class="dropdown-item" href="MovieInfo">New
 									Arrivals</a></li>
 						</ul></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
-				<form class="d-flex" action="MyPage" method="GET">
-					<button class="btn btn-outline-dark" type="submit">
-						<i class="bi-emoji-laughing-fill"></i> MyPage <span
-							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-					</button>
+				<c:if test="${not empty userid}">
+					<form class="d-flex" action="MyPage" method="GET">
+				</c:if>
+				<c:if test="${empty userid}">
+					<form class="d-flex" action="login" method="GET">
+				</c:if>
+				<button class="btn btn-outline-dark" type="submit">
+					<i class="bi-emoji-laughing-fill"></i> MyPage <span
+						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+				</button>
 				</form>
-				<form class="d-flex" action="login" method="GET"
-					style="padding-left: 10px;">
-					<button class="btn btn-outline-dark" type="submit">Login</button>
-				</form>
+				<c:if test="${empty userid}">
+					<form class="d-flex" action="login" method="GET"
+						style="padding-left: 10px;">
+						<button class="btn btn-outline-dark" type="submit">Login
+						</button>
+					</form>
+				</c:if>
+				<c:if test="${not empty userid}">
+					<form class="d-flex" action="logout" method="GET"
+						style="padding-left: 10px;">
+						<button class="btn btn-outline-dark" type="submit">
+							Logout</button>
+					</form>
+				</c:if>
 			</div>
 		</div>
 	</nav>
@@ -67,44 +82,32 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">영화관 리뷰 시스템</p>
+				<p class="lead fw-normal text-white-50 mb-0">영화관 예매 시스템</p>
 			</div>
 		</div>
 	</header>
 	<!-- Section-->
 	<section class="py-5">
-		<div class="text-center">
-			<h2 class="display-4 fw-bolder">오늘의 박스오피스</h2>
-		</div>
 		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-				<c:forEach items="${list}" var="option">
-					<div class="col mb-5">
-						<div class="card h-100">
-							<!-- Product image-->
-							<img class="card-img-top" src=${option.poster} alt="..." />
-							<!-- Product details-->
-							<div class="card-body p-4">
-								<div class="text-center">
-									<!-- Product name-->
-									<h5 class="fw-bolder">${option.title}</h5>
-									<!-- Product price-->
-									${option.genre}
+			<div class="row gx-4 gx-lg-5">
+				<div class="col-lg-12">
+					<div class="text-center">
+						<h2 class="section-heading text-uppercase">Q&A게시판</h2>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-12">
+							      <h2 id = "title"></h2>
 								</div>
-							</div>
-							<!-- Product actions-->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<a class="btn btn-outline-dark mt-auto" href="movieReview?movieSeq=${option.movieSeq}">View options</a>
+								<div class="col-sm-12">
+							      <pre id = "contents"></pre>
 								</div>
 							</div>
 						</div>
 					</div>
-
-				</c:forEach>
-
+				</div>
 			</div>
-
 		</div>
 	</section>
 	<!-- Footer-->

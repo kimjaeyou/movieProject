@@ -47,6 +47,7 @@
 										리뷰</a></li>
 							</c:if>
 						</ul></li>
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -93,49 +94,47 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
-				<c:forEach items="${list.movieListResult.movieList}" var="option">
-					<c:if
-						test="${option.repGenreNm != '성인물(에로)' && option.genreAlt != '' && option.openDt !=' '}">
+				<c:forEach items="${list}" var="option">
+					<%-- <c:if test="${not empty option.genreAlt and not empty option.openDt and !(option.genreAlt eq '성인물(에로)')}"> --%>
 						<div class="col mb-5">
 							<div class="card h-100">
 								<!-- Product image-->
-								<img class="card-img-top" src="../../image/imageMovie.png"
-									alt="..." />
+								<img class="card-img-top" src=${option.poster} alt="..." />
 								<!-- Product details-->
 								<div class="card-body p-4">
 									<div class="text-center">
 										<!-- Product name-->
-										<h5 class="fw-bolder">${option.movieNm}</h5>
+										<h5 class="fw-bolder">${option.title}</h5>
 										<!-- Product price-->
-										${option.genreAlt}
+										${option.genre}
 									</div>
 								</div>
 								<!-- Product actions-->
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="text-center">
 										<a class="btn btn-outline-dark mt-auto"
-											href="movieReview?movieCd=${option.movieCd}&movieNm=${option.movieNm}&prdYear=${option.prdYear}&typeNm=${option.typeNm}">View
-											options</a>
+											href="movieReview?movieSeq=${option.movieSeq}">
+											View options</a>
 									</div>
 								</div>
 							</div>
 						</div>
-					</c:if>
+					<%-- </c:if> --%>
 				</c:forEach>
 			</div>
 			<!-- Add a line separator here -->
 			<hr class="my-4" />
 			<!-- Display weekly box office message -->
 			<div class="text-center">
-				<h2 class="display-4 fw-bolder">오늘의 박스 오피스</h2><br>
+				<h2 class="display-4 fw-bolder">오늘의 박스오피스</h2><br>
 			</div>
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
-			<c:forEach items="${list2.boxOfficeResult.dailyBoxOfficeList}" var="option2">
+			<c:forEach items="${list2}" var="option2">
 						<div class="col mb-5">
 							<div class="card h-100">
 								<!-- Product image-->
-								<img class="card-img-top" src="../../image/imageMovie.png"
+								<img class="card-img-top" src=${option2.poster}
 									alt="..." />
 								<!-- Product details-->
 								<div class="card-body p-4">
@@ -150,8 +149,8 @@
 								<!-- Product actions-->
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="text-center">
-										<%-- <a class="btn btn-outline-dark mt-auto"
-											href="movieReview?movieCd=${option2.movieCd}&movieNm=${option2.movieNm}&prdYear=${option2.prdYear}&typeNm=${option2.typeNm}"> --%>
+										<a class="btn btn-outline-dark mt-auto"
+											href="movieReview?movieSeq=${option2.movieSeq}">
 											View options</a>
 									</div>
 								</div>

@@ -26,7 +26,7 @@ public class MoviiAPI {
 		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
 				.path("/kobisopenapi/webservice/rest/movie/searchMovieList.json")
 				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
-				.queryParam("itemPerPage",100)
+				.queryParam("itemPerPage",70)
 				.encode()
 				.build()
 				.toUri();
@@ -64,6 +64,22 @@ public class MoviiAPI {
 		return list;
 	}
 	
+	
+	public MovieList3 SearchMoviesCd(String str) {
+
+		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
+				.path("/kobisopenapi/webservice/rest/movie/searchMovieInfo.json")
+				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
+				.queryParam("movieCd",str)
+				.encode()
+				.build()
+				.toUri();
+
+		MovieList3 list = restTemplate.getForObject(uri, MovieList3.class);
+		return list;
+	}
+	
+	
 
 	public MovieList2 BestDailyMovies() {
 		LocalDate today = LocalDate.now();
@@ -73,22 +89,25 @@ public class MoviiAPI {
 
 		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
 				.path("/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json")
-				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130").queryParam("targetDt", formattedDate).encode()
-				.build().toUri();
+				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
+				.queryParam("targetDt", formattedDate)
+				.encode()
+				.build()
+				.toUri();
 
 		MovieList2 list = restTemplate.getForObject(uri, MovieList2.class);
 		return list;
 	}
 	
 
-	public KMovieList KmdbMovies(String str, String str2) {
+	public KMovieList KmdbMovies(String str) {
 
 		URI uri = UriComponentsBuilder.fromUriString("https://api.koreafilm.or.kr")
 				.path("/openapi-data2/wisenut/search_api/search_json2.jsp")
 				.queryParam("collection", "kmdb_new2")
 				.queryParam("ServiceKey", "G7U7UP0992OID4W1ESGX")
 				.queryParam("title", str)
-				.queryParam("director", str2)
+				.queryParam("listCount", 100)
 				.encode()
 				.build()
 				.toUri();
@@ -112,6 +131,40 @@ public class MoviiAPI {
 
 		return null;
 	}
+	
+	
+	public KMovieList KmdbMoviesSeq(String str) {
+
+		URI uri = UriComponentsBuilder.fromUriString("https://api.koreafilm.or.kr")
+				.path("/openapi-data2/wisenut/search_api/search_json2.jsp")
+				.queryParam("collection", "kmdb_new2")
+				.queryParam("ServiceKey", "G7U7UP0992OID4W1ESGX")
+				.queryParam("movieSeq", str)
+				.queryParam("listCount", 100)
+				.encode()
+				.build()
+				.toUri();
+
+		RestTemplate restTemplate = new RestTemplate();
+		String list = restTemplate.getForObject(uri, String.class);
+		list = list.trim();
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			KMovieList kmovieList = objectMapper.readValue(list, KMovieList.class);
+			return kmovieList;
+			
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
 	
 	
 	public KMovieList AllKmdbMovies() {
