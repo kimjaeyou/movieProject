@@ -25,7 +25,6 @@
 			$(document).ready(function() {
 			    $("#writeBtn").click(function(){
 					var id="${userID}";
-					
 			    	if(id == "")
 			    		location.href ="login";
 			    	else if(id !== "")
@@ -136,7 +135,7 @@
     	    	<c:forEach items="${QAList}" var="board">
                     <tr>
                         <td>${board.qaID }</td>
-                        <td><a href ="content/${board.no}">${board.qaTitle}</a></td>
+                        <td><a href ="QandA/content/${board.no}">${board.qaTitle}</a></td>
                         <td>${board.userID}</td>
                         <td><fmt:formatDate value="${board.registeredDate}" dateStyle="short"/> </td>
                     </tr>
