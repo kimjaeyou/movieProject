@@ -29,8 +29,8 @@ public interface QADao {
 	@Select("select count(*) from QandA")
 	int total();
 	
-	@Select("select * from QandA where no = #{no}")
-	QADto QAContent(int no);
+	@Select("select * from QandA where qaID = #{qaID}")
+	QADto QAContent(int qaID);
 	
 	@Delete("delete from QandA where no = #{no}")
 	int deleteQA(int no);

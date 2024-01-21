@@ -31,7 +31,9 @@ public class QAService {
     }
     
     public QADto QAContent(int no) {
+    	System.out.println("11111111222222222222444444444444444444");
     	dao.addReadCount(no);
+    	System.out.println("55555555555555555555555555555555555555");
     	return dao.QAContent(no);
     }
     

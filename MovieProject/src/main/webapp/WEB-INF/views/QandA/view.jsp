@@ -54,7 +54,7 @@
 							<li><a class="dropdown-item" href="MovieInfo">New
 									Arrivals</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="./QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -100,19 +100,17 @@
 				<div class="col-lg-12">
 					<div id="container">
 					<table border="1">
-						<tr><td>제목</td><td>${dto.qaTitle}</td></tr>
-						<tr><td>작성자</td><td>${dto.userID}</td></tr>
-						<tr><td>내용</td><td>${dto.content}</td></tr>
-						<tr><td>등록일</td><td><fmt:formatDate value="${dto.registeredDate }" dateStyle="long"/></td></tr>
-						<tr><td>조회수</td><td>${dto.readCount}</td></tr>
+						<tr><td>${dto.qaTitle}</td><td>${userID}</td></tr>
+						<tr><td colspan="2" align="center">${dto.content}</td></tr>
+						<tr><td>등록일: <fmt:formatDate value="${dto.registeredDate }" dateStyle="long"/></td><td>조회수: ${dto.readCount}</td></tr>
 						<tr><td colspan="2" align="right">
 						
-						<c:if test="${ user.id == dto.id }">
+						<c:if test="${ userID == dto.userID }">
 							<a href="/QandA/update/${dto.no}">글 수정 </a> 
 							<a id="${dto.no}" href="#">글 삭제</a>
 						</c:if>
 						
-						<a href="../QandA">목록 이동</a> 
+						<a href="../../QandA">목록 이동</a> 
 						</td></tr>
 					</table>
 											
