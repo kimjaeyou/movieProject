@@ -40,9 +40,11 @@ public class ReviewController {
 	MoviiAPI moApi;
 
 	@RequestMapping("movieReview")
+
 	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
 		String poster = null;
 		String str=null;
+		String movieTitle=null;
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
 		m.addAttribute("getReview", getReview);
@@ -51,12 +53,14 @@ public class ReviewController {
 		for (Datalist m1 : list.getData()) {
 			for (Movie n : m1.getResult()) {
 				poster = n.getPosters().split("\\|")[0];
+				movieTitle = n.getTitle();
 				for(Plot p : n.getPlots().getPlot())
 				str = p.getPlotText();
 			}
 		}
 
 		m.addAttribute("list", list);
+		m.addAttribute("movieCd",movieTitle);
 		m.addAttribute("post", poster);
 		m.addAttribute("str", str);
 
