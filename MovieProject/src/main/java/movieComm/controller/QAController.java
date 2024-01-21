@@ -44,7 +44,7 @@ public class QAController {
 	@PostMapping("/QandA/write")
 	public String write(QADto dto) {
 		Qa.insert(dto);
-		return "redirect:/QandA";
+		return "redirect:QandA";
 	}
 	
 	@RequestMapping("QandA")
@@ -74,6 +74,7 @@ public class QAController {
 		}
 		m.addAttribute("total", total);
 		m.addAttribute("userID", userID);
+		System.out.println(userID);
 		return "QandA/List";
 	}
 	

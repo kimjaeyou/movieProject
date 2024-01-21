@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -18,6 +19,12 @@
 		<!-- Core theme CSS (includes Bootstrap)-->
 		<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
 			rel="stylesheet" />
+					
+		<style>
+			#container {width: 70%;}
+			table{width: 100%;}
+		</style>
+					
 	</head>
 <body>
 	<!-- Navigation-->
@@ -91,20 +98,24 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5">
 				<div class="col-lg-12">
-					<div class="text-center">
-						<h2 class="section-heading text-uppercase">Q&A게시판</h2>
-					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="row">
-								<div class="col-sm-12">
-							      <h2 id = "title"></h2>
-								</div>
-								<div class="col-sm-12">
-							      <pre id = "contents"></pre>
-								</div>
-							</div>
-						</div>
+					<div id="container">
+					<table border="1">
+						<tr><td>제목</td><td>${dto.qaTitle}</td></tr>
+						<tr><td>작성자</td><td>${dto.userID}</td></tr>
+						<tr><td>내용</td><td>${dto.content}</td></tr>
+						<tr><td>등록일</td><td><fmt:formatDate value="${dto.registeredDate }" dateStyle="long"/></td></tr>
+						<tr><td>조회수</td><td>${dto.readCount}</td></tr>
+						<tr><td colspan="2" align="right">
+						
+						<c:if test="${ user.id == dto.id }">
+							<a href="/QandA/update/${dto.no}">글 수정 </a> 
+							<a id="${dto.no}" href="#">글 삭제</a>
+						</c:if>
+						
+						<a href="../list">목록 이동</a> 
+						</td></tr>
+					</table>
+											
 					</div>
 				</div>
 			</div>
