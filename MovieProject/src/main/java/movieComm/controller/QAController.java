@@ -83,7 +83,7 @@ public class QAController {
 		QADto dto = Qa.QAContent(no);
 		m.addAttribute("dto", dto);
 		
-		return "QandA/content";
+		return "QandA/view";
 	}
 	
 	@PutMapping("/QandA/update")

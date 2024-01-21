@@ -112,7 +112,7 @@
 							<a id="${dto.no}" href="#">글 삭제</a>
 						</c:if>
 						
-						<a href="../list">목록 이동</a> 
+						<a href="../QandA">목록 이동</a> 
 						</td></tr>
 					</table>
 											
