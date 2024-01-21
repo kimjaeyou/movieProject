@@ -45,8 +45,7 @@ public class ReviewController {
 		String poster = null;
 		String str=null;
 
-	public String Review(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String prdYear,@RequestParam String typeNm, Model m, HttpSession session) {
-
+		String movieTitle=null;
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
 		m.addAttribute("getReview", getReview);
@@ -55,12 +54,14 @@ public class ReviewController {
 		for (Datalist m1 : list.getData()) {
 			for (Movie n : m1.getResult()) {
 				poster = n.getPosters().split("\\|")[0];
+				movieTitle = n.getTitle();
 				for(Plot p : n.getPlots().getPlot())
 				str = p.getPlotText();
 			}
 		}
 
 		m.addAttribute("list", list);
+		m.addAttribute("movieCd",movieTitle);
 		m.addAttribute("post", poster);
 		m.addAttribute("str", str);
 

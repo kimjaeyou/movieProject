@@ -54,10 +54,9 @@ public class MainController {
 	@RequestMapping({ "home", "/" })
 	public String goMain(Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
-		List<Map<String, String>> mlist = Moservice.reMainList();
 		
 		m.addAttribute("userid", userid);
-		m.addAttribute("mlist", mlist);
+		
 		
 		//MovieList list =moviiAPI.Movies();
 		ArrayList<MovieStructure> list = movieFormat.reMovies();// 포맷팅 데이터

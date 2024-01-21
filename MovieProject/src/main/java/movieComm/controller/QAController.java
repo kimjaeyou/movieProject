@@ -37,7 +37,7 @@ public class QAController {
 	}
 	
 	@GetMapping("/QandA/write")
-	public String write(@ModelAttribute("user")UserDto dto) {
+	public String write(@ModelAttribute("user")UserDto user) {
 		return "QandA/write";
 	}
 	
@@ -78,12 +78,13 @@ public class QAController {
 		return "QandA/List";
 	}
 	
-	@GetMapping("QandA/content/{no}")
-	public String content(@PathVariable int no, Model m) {
-		QADto dto = Qa.QAContent(no);
+	@GetMapping("QandA/content/{qaID}")
+	public String content(HttpSession session, @PathVariable int qaID, Model m) {
+		QADto dto = Qa.QAContent(qaID);
 		m.addAttribute("dto", dto);
-		
-		return "QandA/content";
+		String userID = (String) session.getAttribute("userid");
+		m.addAttribute("userID", userID);
+		return "QandA/view";
 	}
 	
 	@PutMapping("/QandA/update")
