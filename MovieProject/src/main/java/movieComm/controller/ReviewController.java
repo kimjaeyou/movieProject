@@ -34,7 +34,7 @@ public class ReviewController {
 	ReviewDao rDao;
 
 	@Autowired
-	ReviewService Reservice;
+	ReviewService Reservice;   
 
 	@Autowired
 	MoviiAPI moApi;
