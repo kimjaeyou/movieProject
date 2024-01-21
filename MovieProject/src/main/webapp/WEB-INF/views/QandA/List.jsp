@@ -26,7 +26,7 @@
 			    $("#writeBtn").click(function(){
 					var id="${userID}";
 					
-			    	if(id == null)
+			    	if(id != "")
 			    	location.href ="/QandA/write";
 			    	else
 			    	location.href = "login";
