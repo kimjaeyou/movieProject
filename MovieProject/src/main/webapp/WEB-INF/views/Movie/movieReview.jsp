@@ -17,7 +17,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="../../startbootstrap-shop-homepage-gh-pages/css/movieReview.css"
+<link
+	href="../../startbootstrap-shop-homepage-gh-pages/css/movieReview.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -41,16 +42,15 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="MovieInfo">All
-									Products</a></li>
+							<li><a class="dropdown-item" href="reviewList">영화 리뷰</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="MovieInfo">Popular
-									Items</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">박스오피스</a></li>
 							<c:if test="${not empty userid}">
 								<li><a class="dropdown-item" href="movieHistory">내가 작성한
 										리뷰</a></li>
 							</c:if>
 						</ul></li>
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -81,30 +81,24 @@
 		</div>
 	</nav>
 	<!-- Header-->
-	<header class="bg_header">
-		<section id="moviePost">
-			<div>
-				<div id="postText">
-					<h1>뒤에 있는 포스터는 api로 가져옴</h1>
-					<br>
-					<h3><%=request.getParameter("movieNm")%></h3>
-					<div><%=request.getParameter("movieNm")%></div>
-					<div><%=request.getParameter("prdYear")%>
-						-
-						<%=request.getParameter("typeNm")%></div>
-					<div>대충 DB에서 가져온 영화 연령값 or 아무거나</div>
-					<div>대충 DB에서 가져온 영화 예매률 or 아무거나</div>
-				</div>
+
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
+				<p class="lead fw-normal text-white-50 mb-0">영화 리뷰시스템</p>
 			</div>
-		</section>
+		</div>
 	</header>
+
+
 
 	<div class="big_frame">
 		<!-- section -->
 		<section id="movieDetail">
 			<div id="movieCoverLeft">
 				<div>
-					<img class="card-img-top" src=${post} alt="..." />
+					<img class="card-img-top" src=${post } alt="..." />
 				</div>
 			</div>
 
@@ -145,17 +139,21 @@
 								<div class="ellipsis">${option.content}</div>
 								<hr>
 								<div>
-								<img src="../../../images/like.png"><em>0</em>&nbsp;<img src="../../../images/comment.png"><em>0</em>
+									<img src="../../../images/like.png"><em>0</em>&nbsp;<img
+										src="../../../images/comment.png"><em>0</em>
 								</div>
 								<hr>
-								<div><input type="button" value="좋아요"></div>
+								<div>
+									<input type="button" value="좋아요">
+								</div>
 							</div>
 						</li>
 					</c:if>
 				</c:forEach>
 			</ul>
 			<c:if test="${not empty userid}">
-				<a href="reviewScript?movieCd=${movieCd}&movieNm=${movieNm}&movieCd=${movieCd} "><input
+				<a
+					href="reviewScript?movieCd=${movieCd}&movieNm=${movieNm}&movieCd=${movieCd}&post=${post} "><input
 					type="button" value="리뷰 작성하기"></a>
 			</c:if>
 			<c:if test="${empty userid}">

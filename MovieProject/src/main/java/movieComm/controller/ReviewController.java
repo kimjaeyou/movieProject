@@ -43,8 +43,9 @@ public class ReviewController {
 
 	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
 		String poster = null;
-		String str=null;
-		String movieTitle=null;
+		String str = null;
+		
+		
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
 		m.addAttribute("getReview", getReview);
@@ -53,14 +54,14 @@ public class ReviewController {
 		for (Datalist m1 : list.getData()) {
 			for (Movie n : m1.getResult()) {
 				poster = n.getPosters().split("\\|")[0];
-				movieTitle = n.getTitle();
+				
 				for(Plot p : n.getPlots().getPlot())
 				str = p.getPlotText();
 			}
 		}
 
 		m.addAttribute("list", list);
-		m.addAttribute("movieCd",movieTitle);
+		m.addAttribute("movieCd",movieCd);
 		m.addAttribute("post", poster);
 		m.addAttribute("str", str);
 
@@ -82,9 +83,11 @@ public class ReviewController {
 	}
 
 	@RequestMapping("reviewScript")
-	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm, Model m,
+	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String post, Model m,
 			HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
+		
+		m.addAttribute("post", post);
 		m.addAttribute("movieCd", movieCd);
 		m.addAttribute("movieNm", movieNm);
 		m.addAttribute("user_id", userid);
@@ -95,9 +98,9 @@ public class ReviewController {
 	@PostMapping("reviewList")
 	public String reviewList(Model m, ReviewDto review, RedirectAttributes redirectAttributes) {
 		// 리뷰를 저장하는 메서드 호출
+		System.out.println(review+"여기");
 		Reservice.script(review);
-
-		// POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
+		//POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
 		return "redirect:/reviewList";
 	}
 
@@ -105,6 +108,7 @@ public class ReviewController {
 	public String getReviewList(Model m) {
 		// 리뷰 목록을 다시 불러와서 모델에 추가
 		List<Map<String, String>> reviewScript = Reservice.getReviewScript();
+		
 		m.addAttribute("reviewScript", reviewScript);
 
 		return "Movie/reviewList";

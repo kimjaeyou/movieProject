@@ -23,6 +23,7 @@
 </head>
 <body>
 
+	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="home">Movie=Pro</a>
@@ -41,16 +42,15 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="MovieInfo">All
-									Products</a></li>
+							<li><a class="dropdown-item" href="reviewList">영화 리뷰</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="MovieInfo">Popular
-									Items</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">박스오피스</a></li>
 							<c:if test="${not empty userid}">
 								<li><a class="dropdown-item" href="movieHistory">내가 작성한
 										리뷰</a></li>
 							</c:if>
 						</ul></li>
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -94,7 +94,7 @@
 	<section>
 		<div class="big_frame">
 			<div class="reviewDiv">
-				<img src="../../../images/HarryPotter_post.jpg">
+				<img src=<%=request.getParameter("post")%>>
 				<table id="reviewTable">
 					<thead>
 						<tr>
@@ -103,7 +103,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>대충 줄거리</td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
@@ -111,6 +111,7 @@
 					<form id="reviewForm"method="post" action="reviewList">
 						<input id="user_id" value="${user_id}" name="user_id"hidden="hidden">
 						<input id="movieCd"value="<%=request.getParameter("movieCd")%>" name="movieCd" hidden="hidden"> <label for="review"></label>
+						<input id="poster"value="<%=request.getParameter("post")%>" name="poster" hidden="hidden">
 						<textarea name="content"></textarea>
 						<div>
 							<label for="score">별점:</label> <select id="score" name="score"

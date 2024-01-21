@@ -29,6 +29,7 @@ public class ReviewService {
 	}
 	
 	public void script(ReviewDto review) {
+		System.out.println(review+"여기");
 		Rdao.review(review);
 	}
 	public List<Map<String, String>> getReviewScript() {
