@@ -123,7 +123,7 @@ public class ReviewController {
 		return "Movie/reviewPoint_1";
 	}
 	@RequestMapping("searchMovieTitle")
-	public String searchMovieTitle(@RequestParam(name = "a", required = false) String searchTerm, Model m) {
+	public String searchMovieTitle(@RequestParam(name = "stx", required = false) String searchTerm, Model m) {
 		List<Map<String, String>> getmovieTitle = Reservice.getmovieTitle(searchTerm); 
 		m.addAttribute("getmovieTitle", getmovieTitle);
 		return "Movie/searchMovieTitle";
