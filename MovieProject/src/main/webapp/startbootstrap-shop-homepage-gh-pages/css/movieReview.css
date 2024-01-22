@@ -12652,7 +12652,7 @@ fieldset:disabled .btn {
 	position: relative;
 	width: 100%;
 	height: 550px;
-	background-image: url(../../images/HarryPotter_Main_2.jpg);
+	/*background-image: url(../../images/HarryPotter_Main_2.jpg);*/
 	background-position: center;
 	background-size: cover;
 }
