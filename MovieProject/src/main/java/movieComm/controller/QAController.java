@@ -87,6 +87,13 @@ public class QAController {
 		return "QandA/view";
 	}
 	
+	@GetMapping("/QandA/update/{qaID}")
+	public String updateForm(@PathVariable int qaID, Model m) {
+		QADto dto = Qa.QAContent(qaID);
+		m.addAttribute("dto", dto);
+		return "QandA/update";
+	}
+	
 	@PutMapping("/QandA/update")
 	public String update(QADto dto) {
 		Qa.updateQA(dto);

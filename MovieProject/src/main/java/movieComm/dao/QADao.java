@@ -17,13 +17,13 @@ public interface QADao {
 	@Insert("insert into QandA(qaID, qaTitle, content, registeredDate) values(#{qaID}, #{qaTitle}, #{content}, now())")
 	int insert(QADto dto);
 	
-	@Update("update QandA set readCount = readCount + 1 where no = #{no}")
-	int addReadCount(int no);
+	@Update("update QandA set readCount = readCount + 1 where qaID = #{qaID}")
+	int addReadCount(int qaID);
 	
 	@Select("select * from QandA order by registeredDAte desc limit #{start}, #{count}")
 	List<QADto> QAList(Map<String, Object> m);
 	
-	@Update("update QandA set qaTitle = #{qaTitle}, content = #{content} where no = #{no}")
+	@Update("update QandA set qaTitle = #{qaTitle}, content = #{content} where qaID = #{qaID}")
 	int updateQA(QADto dto);
 	
 	@Select("select count(*) from QandA")

@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -19,12 +18,6 @@
 		<!-- Core theme CSS (includes Bootstrap)-->
 		<link href="../../startbootstrap-shop-homepage-gh-pages/css/styles.css"
 			rel="stylesheet" />
-					
-		<style>
-			#container {width: 70%;}
-			table{width: 100%;}
-		</style>
-					
 	</head>
 <body>
 	<!-- Navigation-->
@@ -54,7 +47,7 @@
 							<li><a class="dropdown-item" href="MovieInfo">New
 									Arrivals</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../../QandA">Q&A</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -98,23 +91,26 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5">
 				<div class="col-lg-12">
-					<div id="container">
-					<table border="1">
-						<tr><td>${dto.qaTitle}</td><td>${userID}</td></tr>
-						<tr><td colspan="2" align="center">${dto.content}</td></tr>
-						<tr><td>등록일: <fmt:formatDate value="${dto.registeredDate }" dateStyle="long"/></td><td>조회수: ${dto.readCount}</td></tr>
-						<tr><td colspan="2" align="right">
-						
-						<c:if test="${ userID == dto.userID }">
-							<a href="/QandA/update/${dto.qaID}">글 수정 </a> 
-							<a id="${dto.no}" href="#">글 삭제</a>
-						</c:if>
-						
-						<a href="../../QandA">목록 이동</a> 
-						</td></tr>
-					</table>
-											
+					<div class="text-center">
+						<h2 class="section-heading text-uppercase">Q&A게시판 글 수정하기</h2>
 					</div>
+					<div class= "container">
+    	<div class= "row">
+    		<form method="Get" action="/QandA/update">
+    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
+			    	<tbody>
+			    		<tr>
+			    			<td><input type="text" class="form-control" value="${dto.qaTitle}" name="qaTitle" maxlength="50" ></td>
+			    		</tr>
+			    		<tr>
+			    			<td><textarea class="form-control"  name="content" maxlength="2048" style= "height:350px" >${dto.content}</textarea></td>
+			    		</tr>
+			    	</tbody>
+    	    	</table>
+    	    	<input type="submit" class="btn btn-primary pull-right" value="수정하기">
+    		</form>
+    	    </div>
+    </div>
 				</div>
 			</div>
 		</div>
