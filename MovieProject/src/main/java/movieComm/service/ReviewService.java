@@ -29,6 +29,7 @@ public class ReviewService {
 	}
 	
 	public void script(ReviewDto review) {
+		System.out.println(review+"여기");
 		Rdao.review(review);
 	}
 	public List<Map<String, String>> getReviewScript() {
@@ -59,4 +60,9 @@ public class ReviewService {
 		List<Map<String, String>> mlist = Rdao.getP_5();
 		return mlist;
 	}
+	public List<Map<String, String>> getmovieTitle(String a){
+		List<Map<String, String>> movieTitles = Rdao.getmovieTitle(a);
+		return movieTitles;
+	}
+
 }

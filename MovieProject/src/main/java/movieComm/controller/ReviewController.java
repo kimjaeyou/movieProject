@@ -43,9 +43,10 @@ public class ReviewController {
 
 	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
 		String poster = null;
+		String movieTitle =null;
 		String str=null;
+		
 
-		String movieTitle=null;
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
 		m.addAttribute("getReview", getReview);
@@ -59,9 +60,10 @@ public class ReviewController {
 				str = p.getPlotText();
 			}
 		}
-
+		
+		m.addAttribute("movieTitle",movieTitle);
 		m.addAttribute("list", list);
-		m.addAttribute("movieCd",movieTitle);
+		m.addAttribute("movieCd",movieCd);
 		m.addAttribute("post", poster);
 		m.addAttribute("str", str);
 
@@ -83,22 +85,24 @@ public class ReviewController {
 	}
 
 	@RequestMapping("reviewScript")
-	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm, Model m,
+	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String post,@RequestParam String movieTitle, Model m,
 			HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
+		
+		m.addAttribute("movieTitle", movieTitle);
+		m.addAttribute("post", post);
 		m.addAttribute("movieCd", movieCd);
 		m.addAttribute("movieNm", movieNm);
 		m.addAttribute("user_id", userid);
-		System.out.println(movieNm);
 		return "Movie/reviewScript";
 	}
 
 	@PostMapping("reviewList")
 	public String reviewList(Model m, ReviewDto review, RedirectAttributes redirectAttributes) {
 		// 리뷰를 저장하는 메서드 호출
+		System.out.println(review+"여기");
 		Reservice.script(review);
-
-		// POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
+		//POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
 		return "redirect:/reviewList";
 	}
 
@@ -106,6 +110,7 @@ public class ReviewController {
 	public String getReviewList(Model m) {
 		// 리뷰 목록을 다시 불러와서 모델에 추가
 		List<Map<String, String>> reviewScript = Reservice.getReviewScript();
+		
 		m.addAttribute("reviewScript", reviewScript);
 
 		return "Movie/reviewList";
@@ -116,6 +121,12 @@ public class ReviewController {
 		List<Map<String, String>> point_1 = Reservice.point_1();
 		m.addAttribute("point_1", point_1);
 		return "Movie/reviewPoint_1";
+	}
+	@RequestMapping("searchMovieTitle")
+	public String searchMovieTitle(@RequestParam(name = "a", required = false) String searchTerm, Model m) {
+		List<Map<String, String>> getmovieTitle = Reservice.getmovieTitle(searchTerm); 
+		m.addAttribute("getmovieTitle", getmovieTitle);
+		return "Movie/searchMovieTitle";
 	}
 
 	@RequestMapping("reviewPoint_2")

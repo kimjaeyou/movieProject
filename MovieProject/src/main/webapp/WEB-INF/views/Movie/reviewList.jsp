@@ -36,18 +36,21 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="Ticketing">예매</a></li>
+						aria-current="page" href="home">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="home">이벤트</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="reviewBoard">리뷰페이지</a></li>
+							<li><a class="dropdown-item" href="reviewList">영화 리뷰</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="movieHistory">내가 본 영화</a></li>
-							<li><a class="dropdown-item" href="MovieInfo">New
-									Arrivals</a></li>
-						</ul>
+							<li><a class="dropdown-item" href="MovieInfo">박스오피스</a></li>
+							<c:if test="${not empty userid}">
+								<li><a class="dropdown-item" href="movieHistory">내가 작성한
+										리뷰</a></li>
+							</c:if>
+						</ul></li>
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -92,7 +95,7 @@
 		<section>
 			<div>
 				<div>
-					<form method="get" action="search.php">
+					<form method="get" action="searchMovieTitle">
 						<div class="searchReview">
 							<input class="searchInput" type="text" name="stx"
 								placeholder="제목 입력"> <img class="searchImg"
@@ -134,11 +137,11 @@
 				<c:forEach items="${reviewScript}" var="review">
 					<div
 						style="display: flex; height: 120px; overflow: hidden; text-overflow: ellipsis;">
-						<img src="../../../images/HarryPotter_post.jpg" width="10%">
+						<img src=${review.poster} width="10%">
 						<table border="1" width="100%" cellspacing="5">
 							<thead>
 								<tr align="center">
-									<th width="15%">영화 코드</th>
+									<th width="15%">영화 제목</th>
 									<th width="40%">리뷰 내용</th>
 									<th width="15%">별점</th>
 									<th width="30%">작성자</th>
@@ -147,7 +150,7 @@
 
 							<tbody>
 								<tr align="center">
-									<td>${review.movieCd}</td>
+									<td>${review.movieTitle}</td>
 									<td
 										style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${review.content}</td>
 									<td>${review.score}</td>
