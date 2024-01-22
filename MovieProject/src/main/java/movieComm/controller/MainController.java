@@ -24,6 +24,7 @@ import movieComm.dto.UserDto;
 import movieComm.kmdbApi.KMovieList;
 import movieComm.service.BoxOffixeService;
 import movieComm.service.MainService;
+import movieComm.service.MovieService;
 import movieComm.service.MypageService;
 
 @Controller
@@ -50,6 +51,9 @@ public class MainController {
 	
 	@Autowired
 	MovieFormat movieFormat;
+	
+	@Autowired
+	MovieService movieService;
 
 	@RequestMapping({ "home", "/" })
 	public String goMain(Model m, HttpSession session) {
@@ -61,8 +65,11 @@ public class MainController {
 		ArrayList<MovieStructure> list = movieFormat.reMovies();// 포맷팅 데이터
 		m.addAttribute("list", list);
 		
-		ArrayList<DaillyStructure> list2 = dayFormat.reDailly();//오늘의박스 오피스 포맷팅 데이터
+		ArrayList<DaillyStructure> list2 = dayFormat.reDailly();//오늘의 박스오피스 포맷팅 데이터
 		m.addAttribute("list2", list2);
+		
+		movieService.movieDataInsert();
+		
 		return "home";
 	}
 	
