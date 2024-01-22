@@ -56,6 +56,7 @@ public class MovieFormat {
 
 				for (Datalist m : movie.getData()) {
 					for (movieComm.kmdbApi.Movie n : m.getResult()) {
+						
 						for (Director d : n.getDirectors().getDirector()) {
 
 							// 각 API가 저장하는 감독의 이름이 조금씩 다른 경우 존재 (EX- A:오네 B:호네) 이런 식의 상이함 해결을 위한 조건문 단어의

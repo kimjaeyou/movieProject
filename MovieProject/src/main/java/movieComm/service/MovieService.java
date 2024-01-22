@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import movieComm.DataFormating.DaillyFormat;
 import movieComm.DataFormating.MovieFormat;
+import movieComm.DataStructure.DaillyStructure;
 import movieComm.DataStructure.MovieStructure;
 import movieComm.dao.MovieDao;
 
@@ -15,6 +17,9 @@ public class MovieService {
 
 	@Autowired
 	MovieFormat format;
+
+	@Autowired
+	DaillyFormat dformat;
 
 	@Autowired
 	MovieDao mdao;
@@ -30,5 +35,22 @@ public class MovieService {
 			if (Seq_IsMatch(mdao.GetMovieSeq(), data.getMovieSeq()))
 				mdao.InsertMovie(data);
 		}
+	}
+
+	public ArrayList<MovieStructure> movieDataGet() {
+		return mdao.GetMovies();
+	}
+
+	public void daillyDataInsert() {
+		ArrayList<DaillyStructure> movieData = new ArrayList<DaillyStructure>();
+		movieData = dformat.reDailly();
+		mdao.truncate();
+		for (DaillyStructure data : movieData) {
+			mdao.InsertDailly(data);
+		}
+	}
+
+	public ArrayList<DaillyStructure> daillyDataGet() {
+		return mdao.GetDailly();
 	}
 }

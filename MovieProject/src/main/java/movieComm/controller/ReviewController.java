@@ -34,7 +34,7 @@ public class ReviewController {
 	ReviewDao rDao;
 
 	@Autowired
-	ReviewService Reservice;
+	ReviewService Reservice;   
 
 	@Autowired
 	MoviiAPI moApi;
@@ -43,9 +43,10 @@ public class ReviewController {
 
 	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
 		String poster = null;
-		String str = null;
+		String movieTitle =null;
+		String str=null;
 		
-		
+
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
 		m.addAttribute("getReview", getReview);
@@ -54,12 +55,13 @@ public class ReviewController {
 		for (Datalist m1 : list.getData()) {
 			for (Movie n : m1.getResult()) {
 				poster = n.getPosters().split("\\|")[0];
-				
+				movieTitle = n.getTitle();
 				for(Plot p : n.getPlots().getPlot())
 				str = p.getPlotText();
 			}
 		}
-
+		
+		m.addAttribute("movieTitle",movieTitle);
 		m.addAttribute("list", list);
 		m.addAttribute("movieCd",movieCd);
 		m.addAttribute("post", poster);
@@ -83,15 +85,15 @@ public class ReviewController {
 	}
 
 	@RequestMapping("reviewScript")
-	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String post, Model m,
+	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String post,@RequestParam String movieTitle, Model m,
 			HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		
+		m.addAttribute("movieTitle", movieTitle);
 		m.addAttribute("post", post);
 		m.addAttribute("movieCd", movieCd);
 		m.addAttribute("movieNm", movieNm);
 		m.addAttribute("user_id", userid);
-		System.out.println(movieNm);
 		return "Movie/reviewScript";
 	}
 
@@ -119,6 +121,12 @@ public class ReviewController {
 		List<Map<String, String>> point_1 = Reservice.point_1();
 		m.addAttribute("point_1", point_1);
 		return "Movie/reviewPoint_1";
+	}
+	@RequestMapping("searchMovieTitle")
+	public String searchMovieTitle(@RequestParam(name = "stx", required = false) String searchTerm, Model m) {
+		List<Map<String, String>> getmovieTitle = Reservice.getmovieTitle(searchTerm); 
+		m.addAttribute("getmovieTitle", getmovieTitle);
+		return "Movie/searchMovieTitle";
 	}
 
 	@RequestMapping("reviewPoint_2")

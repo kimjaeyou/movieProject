@@ -10,5 +10,6 @@ public class ReviewDto {
 	private String user_id;
 	private String movieCd;
 	private String poster;
+	private String movieTitle;
 }
 

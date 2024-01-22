@@ -95,7 +95,7 @@
 		<section>
 			<div>
 				<div>
-					<form method="get" action="search.php">
+					<form method="get" action="searchMovieTitle">
 						<div class="searchReview">
 							<input class="searchInput" type="text" name="stx"
 								placeholder="제목 입력"> <img class="searchImg"

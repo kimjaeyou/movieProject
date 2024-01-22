@@ -16,7 +16,7 @@ public interface ReviewDao {
 	@Select("select * from review")
 	List<Map<String, String>>getList();
 	
-	@Insert("insert into review (score, content, user_id, movieCd,poster) values( #{score}, #{content}, #{user_id}, #{movieCd}, #{poster})")
+	@Insert("insert into review (score, content, user_id, movieCd,poster, movieTitle) values( #{score}, #{content}, #{user_id}, #{movieCd}, #{poster}, #{movieTitle})")
 	void review(ReviewDto review);
 	
 	@Select("select user_id, content from review where movieCd = #{movieCd, jdbcType=VARCHAR}")
@@ -37,6 +37,8 @@ public interface ReviewDao {
 	@Select("select * from review where score=5")
 	List<Map<String, String>>getP_5();
 	
+	@Select("SELECT * FROM review WHERE movieTitle LIKE '%${a}%'")
+	List<Map<String, String>> getmovieTitle(String a);
 
 }
 

@@ -107,7 +107,9 @@
 					<div>
 						<div id="starValue">평균 별점 DB에서 가져오기</div>
 					</div>
-					<br> <br>
+					<br>
+					<div class="movieTitle"><b>${movieTitle}</b></div>
+					<br>
 					<div>
 						<div>${str}</div>
 					</div>
@@ -153,7 +155,7 @@
 			</ul>
 			<c:if test="${not empty userid}">
 				<a
-					href="reviewScript?movieCd=${movieCd}&movieNm=${movieNm}&movieCd=${movieCd}&post=${post} "><input
+					href="reviewScript?movieCd=${movieCd}&movieNm=${movieNm}&movieCd=${movieCd}&post=${post}&movieTitle=${movieTitle}"><input
 					type="button" value="리뷰 작성하기"></a>
 			</c:if>
 			<c:if test="${empty userid}">

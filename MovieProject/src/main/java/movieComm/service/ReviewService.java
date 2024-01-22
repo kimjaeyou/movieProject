@@ -60,4 +60,9 @@ public class ReviewService {
 		List<Map<String, String>> mlist = Rdao.getP_5();
 		return mlist;
 	}
+	public List<Map<String, String>> getmovieTitle(String a){
+		List<Map<String, String>> movieTitles = Rdao.getmovieTitle(a);
+		return movieTitles;
+	}
+
 }

@@ -95,7 +95,7 @@
 		<section>
 			<div>
 				<div>
-					<form method="get" action="search.php">
+					<form method="get" action="searchMovieTitle">
 						<div class="searchReview">
 							<input class="searchInput" type="text" name="stx"
 								placeholder="제목 입력"> <img class="searchImg"
@@ -141,7 +141,7 @@
 						<table border="1" width="100%" cellspacing="5">
 							<thead>
 								<tr align="center">
-									<th width="15%">영화 코드</th>
+									<th width="15%">영화 제목</th>
 									<th width="40%">리뷰 내용</th>
 									<th width="15%">별점</th>
 									<th width="30%">작성자</th>
@@ -150,7 +150,7 @@
 
 							<tbody>
 								<tr align="center">
-									<td>${review.movieCd}</td>
+									<td>${review.movieTitle}</td>
 									<td
 										style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${review.content}</td>
 									<td>${review.score}</td>
