@@ -44,9 +44,9 @@ public class MovieFormat {
 
 			response = moviiAPI.SearchMoviesCd(AmovieCd);
 			KMovieList movie = moviiAPI.KmdbMovies(Mname);
-
+			
 			for (Director2 dir : response.getMovieInfoResult().getMovieInfo().getDirectors()) {
-
+				
 				// 한 영화에 감독이 2명 이상일 수 있음 이때 필요한 경우는 1명을 통한 검색 이후 2번째는 불필요 이를 제어하기 위한 조건문
 				if (flag == true && flagNum >= 1) {
 					flag = false;
@@ -56,12 +56,13 @@ public class MovieFormat {
 
 				for (Datalist m : movie.getData()) {
 					for (movieComm.kmdbApi.Movie n : m.getResult()) {
+						
 						for (Director d : n.getDirectors().getDirector()) {
 
 							// 각 API가 저장하는 감독의 이름이 조금씩 다른 경우 존재 (EX- A:오네 B:호네) 이런 식의 상이함 해결을 위한 조건문 단어의
 							// 유사도를 분석하는 외부 라이브러리(Levenshtein) 사용해 같은 감독임을 판별
 							if (StringTest.Levenshtein(d.getDirectorNm(), dir.getPeopleNm()) >= 0.6 && !(n.getGenre().equals("에로")) && n.getPosters().split("\\|")[0] != "") {
-
+								
 								addMovieData = new MovieStructure(n.getTitle().replaceAll("!HS|!HE", ""),
 										n.getPosters().split("\\|")[0].replaceAll("!HS|!HE", ""),
 										d.getDirectorNm().replaceAll("!HS|!HE", ""),
