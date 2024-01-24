@@ -41,7 +41,7 @@ public class MovieFormat {
 			Mname = i.getMovieNm();
 			AmovieCd = i.getMovieCd();
 			flag = false;// 영화 순서 제어 플래그 다음 영화로 넘어가면 false로 초기화
-
+			
 			response = moviiAPI.SearchMoviesCd(AmovieCd);
 			KMovieList movie = moviiAPI.KmdbMovies(Mname);
 			

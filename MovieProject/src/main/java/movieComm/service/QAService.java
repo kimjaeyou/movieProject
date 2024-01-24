@@ -39,8 +39,10 @@ public class QAService {
     	return dao.updateQA(dto);
     }
     
-    public int deleteQA(int no) {
-    	return dao.deleteQA(no);
+    public void deleteQA(int qaID, String userID) {
+    	if(userID.equals(dao.QAUserID(qaID))) {
+    		dao.deleteQA(qaID);
+    	}
     }
     
     public List<QADto> QAListSearch(int searchn, String search, int start){
@@ -59,4 +61,6 @@ public class QAService {
     	m.put("search", search);
     	return dao.countSearch(m);
     }
+
+	
 }

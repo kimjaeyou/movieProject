@@ -47,7 +47,7 @@
 							<li><a class="dropdown-item" href="MovieInfo">New
 									Arrivals</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../../QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -96,17 +96,19 @@
 					</div>
 					<div class= "container">
     	<div class= "row">
-    		<form method="Get" action="/QandA/update">
+    		<form method="Post" action="/QandA/update">
     			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
 			    	<tbody>
 			    		<tr>
-			    			<td><input type="text" class="form-control" value="${dto.qaTitle}" name="qaTitle" maxlength="50" ></td>
+			    			<td><input type="text" class="form-control" value="${dto.qaTitle}" name="qaTitle" maxlength="50" readonly></td>
 			    		</tr>
 			    		<tr>
 			    			<td><textarea class="form-control"  name="content" maxlength="2048" style= "height:350px" >${dto.content}</textarea></td>
 			    		</tr>
 			    	</tbody>
     	    	</table>
+    	    	<input type = "hidden" value="${dto.qaID}" name = "qaID">
+    	    	<input type = "hidden" value="${dto.userID}" name = "userID">
     	    	<input type="submit" class="btn btn-primary pull-right" value="수정하기">
     		</form>
     	    </div>

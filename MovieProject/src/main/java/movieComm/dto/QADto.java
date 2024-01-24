@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class QADto {
-	private int no;
 	private String qaID;
 	private String qaTitle;
 	private String content;

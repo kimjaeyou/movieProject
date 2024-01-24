@@ -14,7 +14,7 @@ import movieComm.dto.QADto;
 @Mapper
 public interface QADao {
 	
-	@Insert("insert into QandA(qaID, qaTitle, content, registeredDate) values(#{qaID}, #{qaTitle}, #{content}, now())")
+	@Insert("insert into QandA(qaID, qaTitle, content, userID, registeredDate) values(#{qaID}, #{qaTitle}, #{content}, #{userID}, now())")
 	int insert(QADto dto);
 	
 	@Update("update QandA set readCount = readCount + 1 where qaID = #{qaID}")
@@ -23,7 +23,7 @@ public interface QADao {
 	@Select("select * from QandA order by registeredDAte desc limit #{start}, #{count}")
 	List<QADto> QAList(Map<String, Object> m);
 	
-	@Update("update QandA set qaTitle = #{qaTitle}, content = #{content} where qaID = #{qaID}")
+	@Update("update QandA set content = #{content} where qaID = #{qaID}")
 	int updateQA(QADto dto);
 	
 	@Select("select count(*) from QandA")
@@ -32,9 +32,12 @@ public interface QADao {
 	@Select("select * from QandA where qaID = #{qaID}")
 	QADto QAContent(int qaID);
 	
-	@Delete("delete from QandA where no = #{no}")
-	int deleteQA(int no);
+	@Delete("delete from QandA where qaID = #{qaID}")
+	int deleteQA(int qaID);
 	
 	List<QADto> QAListSearch(Map<String, Object> m);
 	int countSearch(Map<String, Object> m);
+	
+	@Select("select userID from QandA where qaID = #{qaID}")
+	String QAUserID(int qaID);
 }

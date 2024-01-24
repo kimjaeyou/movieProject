@@ -100,14 +100,14 @@
 				<div class="col-lg-12">
 					<div id="container">
 					<table border="1">
-						<tr><td>${dto.qaTitle}</td><td>${userID}</td></tr>
+						<tr><td>${dto.qaTitle}</td><td>작성자: ${dto.userID}</td></tr>
 						<tr><td colspan="2" align="center">${dto.content}</td></tr>
 						<tr><td>등록일: <fmt:formatDate value="${dto.registeredDate }" dateStyle="long"/></td><td>조회수: ${dto.readCount}</td></tr>
 						<tr><td colspan="2" align="right">
 						
 						<c:if test="${ userID == dto.userID }">
-							<a href="/QandA/update/${dto.qaID}">글 수정 </a> 
-							<a id="${dto.no}" href="#">글 삭제</a>
+							<a href="/QandA/update/${dto.qaID}">글 수정 </a>
+							<a href="../../QandA/delete/${dto.qaID}">글 삭제</a>
 						</c:if>
 						
 						<a href="../../QandA">목록 이동</a> 
