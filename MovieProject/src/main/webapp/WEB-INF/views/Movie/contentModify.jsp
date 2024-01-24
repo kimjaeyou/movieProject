@@ -94,11 +94,11 @@
 	<section>
 		<div class="big_frame">
 			<div class="reviewDiv">
-				<img src=<%=request.getParameter("post")%>>
+				<img src=<%=request.getParameter("poster")%>>
 				<table id="reviewTable">
 					<thead>
 						<tr>
-							<th><span><%=request.getParameter("movieNm")%></span></th>
+							<th><span><%=request.getParameter("movieTitle")%></span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -108,12 +108,12 @@
 					</tbody>
 				</table>
 				<div id="reviewDiv_div">
-					<form id="reviewForm"method="post" action="reviewList">
+					<form id="reviewForm" method="post" action="contentModify">
 						<input id="user_id" value="${user_id}" name="user_id"hidden="hidden">
-						<input id="movieCd"value="<%=request.getParameter("movieCd")%>" name="movieCd" hidden="hidden"> <label for="review"></label>
+						<input id="review_id"value="<%=request.getParameter("review_id")%>" name="review_id" hidden="hidden"> <label for="review"></label>
 						<input id="poster"value="<%=request.getParameter("post")%>" name="poster" hidden="hidden">
 						<input id="movieTitle"value="<%=request.getParameter("movieTitle")%>" name="movieTitle">
-						<textarea name="content"></textarea>
+						<textarea name="content" value="<%=request.getParameter("content")%>"></textarea>
 						<div>
 							<label for="score">별점:</label> <select id="score" name="score"
 								size="1" required>

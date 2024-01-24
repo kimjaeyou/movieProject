@@ -154,8 +154,7 @@
 				</c:forEach>
 			</ul>
 			<c:if test="${not empty userid}">
-				<a
-					href="reviewScript?movieCd=${movieCd}&movieNm=${movieNm}&movieCd=${movieCd}&post=${post}&movieTitle=${movieTitle}"><input
+				<a href="reviewScript?movieCd=${movieCd}&movieNm=${movieNm}&movieCd=${movieCd}&post=${post}&movieTitle=${movieTitle}"><input
 					type="button" value="리뷰 작성하기"></a>
 			</c:if>
 			<c:if test="${empty userid}">

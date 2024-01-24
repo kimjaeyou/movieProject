@@ -1,9 +1,11 @@
 package movieComm.dao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import movieComm.dto.ReviewDto;
 
@@ -39,6 +41,16 @@ public interface ReviewDao {
 	
 	@Select("SELECT * FROM review WHERE movieTitle LIKE '%${a}%'")
 	List<Map<String, String>> getmovieTitle(String a);
+	
+	@Select("SELECT * FROM review WHERE user_id ='${a}'")
+	List<Map<String, String>> getUserId(String a);
 
+	@Update("UPDATE review SET content=#{content}, score=#{score} WHERE review_id = #{review_id}")
+	void update_review(@Param("content") String content, @Param("score") int score, @Param("review_id") String review_id);
+	
+	
+	@Delete("DELETE FROM review WHERE review_id = #{review_id}")
+	void delete_review(@Param("review_id") int review_id);
+	
 }
 

@@ -66,8 +66,8 @@ public class MainController {
 		ArrayList<DaillyStructure> list2 = movieService.daillyDataGet();//dayFormat.reDailly();//오늘의 박스오피스 포맷팅 데이터
 		m.addAttribute("list2", list2);
 		
-		//movieService.movieDataInsert(); //-영화 집어 넣는 코드
-		//movieService.daillyDataInsert(); //-박스오피스
+//		movieService.movieDataInsert(); //-영화 집어 넣는 코드
+//		movieService.daillyDataInsert(); //-박스오피스
 		return "home";
 	}
 	

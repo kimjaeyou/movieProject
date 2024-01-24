@@ -27,9 +27,7 @@ public class ReviewService {
 		List<Map<String, String>> tlist = mCdao.getList();
 		return tlist;
 	}
-	
 	public void script(ReviewDto review) {
-		System.out.println(review+"여기");
 		Rdao.review(review);
 	}
 	public List<Map<String, String>> getReviewScript() {
@@ -64,5 +62,14 @@ public class ReviewService {
 		List<Map<String, String>> movieTitles = Rdao.getmovieTitle(a);
 		return movieTitles;
 	}
-
+	public List<Map<String, String>> getUserId(String a){
+		List<Map<String, String>> getUserId = Rdao.getUserId(a);
+		return getUserId;
+	}
+	public void update_review(String content, int score, String review_id){
+		Rdao.update_review(content, score, review_id);
+	}
+	public void delete_review(int review_id) {
+		Rdao.delete_review(review_id);
+	}
 }

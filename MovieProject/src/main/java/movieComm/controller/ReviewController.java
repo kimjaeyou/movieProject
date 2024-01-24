@@ -34,7 +34,7 @@ public class ReviewController {
 	ReviewDao rDao;
 
 	@Autowired
-	ReviewService Reservice;   
+	ReviewService Reservice;
 
 	@Autowired
 	MoviiAPI moApi;
@@ -43,9 +43,8 @@ public class ReviewController {
 
 	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
 		String poster = null;
-		String movieTitle =null;
-		String str=null;
-		
+		String movieTitle = null;
+		String str = null;
 
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
@@ -56,14 +55,14 @@ public class ReviewController {
 			for (Movie n : m1.getResult()) {
 				poster = n.getPosters().split("\\|")[0];
 				movieTitle = n.getTitle();
-				for(Plot p : n.getPlots().getPlot())
-				str = p.getPlotText();
+				for (Plot p : n.getPlots().getPlot())
+					str = p.getPlotText();
 			}
 		}
-		
-		m.addAttribute("movieTitle",movieTitle);
+
+		m.addAttribute("movieTitle", movieTitle);
 		m.addAttribute("list", list);
-		m.addAttribute("movieCd",movieCd);
+		m.addAttribute("movieCd", movieCd);
 		m.addAttribute("post", poster);
 		m.addAttribute("str", str);
 
@@ -77,18 +76,22 @@ public class ReviewController {
 
 	@RequestMapping("movieHistory")
 	public String movieHistory(Model m, HttpSession session) {
-		List<Map<String, String>> tlist = Reservice.title();
 		String userid = (String) session.getAttribute("userid");
-		m.addAttribute("userid", userid);
-		m.addAttribute("tlist", tlist);
+		List<Map<String, String>> getUserId = Reservice.getUserId(userid);
+		m.addAttribute("getUserId", getUserId);
 		return "Movie/movieHistory";
 	}
-
+	@PostMapping("movieHistory")
+	public String deleteReview(@RequestParam("review_id") int review_id, Model m, ReviewDto review, RedirectAttributes redirectAttributes) {
+	    // 리뷰를 삭제하는 메서드 호출
+	    Reservice.delete_review(review_id);
+	    // POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
+	    return "redirect:/movieHistory";
+	}
 	@RequestMapping("reviewScript")
-	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,@RequestParam String post,@RequestParam String movieTitle, Model m,
-			HttpSession session) {
+	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,
+			@RequestParam String post, @RequestParam String movieTitle, Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
-		
 		m.addAttribute("movieTitle", movieTitle);
 		m.addAttribute("post", post);
 		m.addAttribute("movieCd", movieCd);
@@ -100,19 +103,16 @@ public class ReviewController {
 	@PostMapping("reviewList")
 	public String reviewList(Model m, ReviewDto review, RedirectAttributes redirectAttributes) {
 		// 리뷰를 저장하는 메서드 호출
-		System.out.println(review+"여기");
 		Reservice.script(review);
-		//POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
+		// POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
 		return "redirect:/reviewList";
 	}
 
 	@GetMapping("reviewList")
-	public String getReviewList(Model m) {
+	public String getReviewList(String review_id, Model m) {
 		// 리뷰 목록을 다시 불러와서 모델에 추가
 		List<Map<String, String>> reviewScript = Reservice.getReviewScript();
-		
 		m.addAttribute("reviewScript", reviewScript);
-
 		return "Movie/reviewList";
 	}
 
@@ -122,9 +122,10 @@ public class ReviewController {
 		m.addAttribute("point_1", point_1);
 		return "Movie/reviewPoint_1";
 	}
+
 	@RequestMapping("searchMovieTitle")
 	public String searchMovieTitle(@RequestParam(name = "stx", required = false) String searchTerm, Model m) {
-		List<Map<String, String>> getmovieTitle = Reservice.getmovieTitle(searchTerm); 
+		List<Map<String, String>> getmovieTitle = Reservice.getmovieTitle(searchTerm);
 		m.addAttribute("getmovieTitle", getmovieTitle);
 		return "Movie/searchMovieTitle";
 	}
@@ -156,4 +157,18 @@ public class ReviewController {
 		m.addAttribute("point_5", point_5);
 		return "Movie/reviewPoint_5";
 	}
+	@GetMapping("contentModify")
+	public String contentModify(@RequestParam String content, @RequestParam int score, @RequestParam String review_id, Model m, HttpSession session) {
+		//Reservice.update_review(content, score, review_id);
+		return "Movie/contentModify";
+	}
+	@PostMapping("contentModify")
+	public String contentModify_post(@RequestParam String content, @RequestParam int score, @RequestParam String review_id, Model m, HttpSession session) {
+		Reservice.update_review(content, score, review_id);
+		List<Map<String, String>> reviewScript = Reservice.getReviewScript();
+		
+		m.addAttribute("reviewScript", reviewScript);
+		return "Movie/reviewList";
+	}
+	
 }

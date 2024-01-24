@@ -48,7 +48,8 @@
 										리뷰</a></li>
 							</c:if>
 						</ul></li>
-						<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -84,7 +85,7 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">Movie=Pro</h1>
-				<p class="lead fw-normal text-white-50 mb-0">내가 본 영화</p>
+				<p class="lead fw-normal text-white-50 mb-0">내가 작성한 리뷰</p>
 			</div>
 		</div>
 	</header>
@@ -92,31 +93,52 @@
 	<div>
 		<section>
 			<div>
-				<c:forEach items="${tlist}" var="option">
-					<table border="1" width="100%">
-						<tr>
-							<th><img src="../../../images/HarryPotter_post.jpg" alt=""></th>
-							<th>${option.title}</th>
-							<th>별점</th>
-							<th><button id="goto_review">리뷰 수정</button></th>
-							<script>
-								document
-										.getElementById('goto_review')
-										.addEventListener(
-												'click',
-												function() {
-													window.location.href = 'reviewScript';
-												});
-							</script>
-						</tr>
-					</table>
+				<c:forEach items="${getUserId}" var="option">
+					<div
+						style="display: flex; height: 120px; overflow: hidden; text-overflow: ellipsis;">
+						<img src=${option.poster } width="10%">
+						<table border="1" width="100%" cellspacing="5">
+							<thead>
+								<tr align="center">
+									<th width="15%">영화 제목</th>
+									<th width="50%">리뷰 내용</th>
+									<th width="20%">별점</th>
+									<th width="15%">
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr align="center">
+									<td>${option.movieTitle}</td>
+									<td
+										style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${option.content}</td>
+									<td>${option.score}</td>
+									<td>
+										<form action="contentModify" method="get">
+											<input name="review_id" value=${option.review_id} hidden="hidden"/>
+											<input name="poster" value=${option.poster} hidden="hidden"/>
+											<input name="content" value=${option.content} hidden="hidden"/>
+											<input name="movieTitle" value=${option.movieTitle} hidden="hidden"/>
+											<input name="score" value=${option.score} hidden="hidden"/>
+											<input type="submit" value="리뷰 수정하기">
+										</form>
+										<form action="movieHistory" method="post">
+										<input type="hidden" name="review_id" value=${option.review_id}>
+										<input type="submit" value="리뷰 삭제하기">
+										</form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br>
 				</c:forEach>
 			</div>
 
 		</section>
 	</div>
 	<!-- Section-->
-	
+
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
