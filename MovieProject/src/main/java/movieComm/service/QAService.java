@@ -30,19 +30,19 @@ public class QAService {
     	return dao.insert(dto);
     }
     
-    public QADto QAContent(int no) {
-    	System.out.println("11111111222222222222444444444444444444");
-    	dao.addReadCount(no);
-    	System.out.println("55555555555555555555555555555555555555");
-    	return dao.QAContent(no);
+    public QADto QAContent(int qaID) {
+    	dao.addReadCount(qaID);
+    	return dao.QAContent(qaID);
     }
     
     public int updateQA(QADto dto) {
     	return dao.updateQA(dto);
     }
     
-    public int deleteQA(int no) {
-    	return dao.deleteQA(no);
+    public void deleteQA(int qaID, String userID) {
+    	if(userID.equals(dao.QAUserID(qaID))) {
+    		dao.deleteQA(qaID);
+    	}
     }
     
     public List<QADto> QAListSearch(int searchn, String search, int start){
@@ -61,4 +61,6 @@ public class QAService {
     	m.put("search", search);
     	return dao.countSearch(m);
     }
+
+	
 }

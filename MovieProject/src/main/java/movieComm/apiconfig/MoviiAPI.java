@@ -25,7 +25,7 @@ public class MoviiAPI {
 
 		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
 				.path("/kobisopenapi/webservice/rest/movie/searchMovieList.json")
-				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
+				.queryParam("key", "9551ed926c4a56d3a14a2ca1f1a33023")
 				.queryParam("itemPerPage",100)
 				.encode()
 				.build()
@@ -69,7 +69,7 @@ public class MoviiAPI {
 
 		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
 				.path("/kobisopenapi/webservice/rest/movie/searchMovieInfo.json")
-				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
+				.queryParam("key", "9551ed926c4a56d3a14a2ca1f1a33023")
 				.queryParam("movieCd",str)
 				.encode()
 				.build()
@@ -89,7 +89,7 @@ public class MoviiAPI {
 
 		URI uri = UriComponentsBuilder.fromUriString("http://www.kobis.or.kr")
 				.path("/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json")
-				.queryParam("key", "2d73b2cbd2d56c40aaed49c613224130")
+				.queryParam("key", "9551ed926c4a56d3a14a2ca1f1a33023")
 				.queryParam("targetDt", formattedDate)
 				.encode()
 				.build()

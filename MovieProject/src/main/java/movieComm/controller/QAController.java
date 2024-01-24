@@ -37,14 +37,16 @@ public class QAController {
 	}
 	
 	@GetMapping("/QandA/write")
-	public String write(@ModelAttribute("user")UserDto user) {
+	public String write(HttpSession session, Model m) {
+		String userID = (String) session.getAttribute("userid");
+		m.addAttribute("userID", userID);
 		return "QandA/write";
 	}
 	
 	@PostMapping("/QandA/write")
 	public String write(QADto dto) {
 		Qa.insert(dto);
-		return "redirect:QandA";
+		return "redirect:../QandA";
 	}
 	
 	@RequestMapping("QandA")
@@ -74,7 +76,6 @@ public class QAController {
 		}
 		m.addAttribute("total", total);
 		m.addAttribute("userID", userID);
-		System.out.println(userID);
 		return "QandA/List";
 	}
 	
@@ -87,17 +88,27 @@ public class QAController {
 		return "QandA/view";
 	}
 	
-	@PutMapping("/QandA/update")
-	public String update(QADto dto) {
-		Qa.updateQA(dto);
-		return "redirect:List";
+	@GetMapping("/QandA/update/{qaID}")
+	public String updateForm(HttpSession session,@PathVariable int qaID, Model m) {
+		QADto dto = Qa.QAContent(qaID);
+		m.addAttribute("dto", dto);
+		String userID = (String) session.getAttribute("userid");
+		m.addAttribute("userID", userID);
+		return "QandA/update";
 	}
 	
-	@DeleteMapping("/QandA/delete")
-	@ResponseBody
-	public String delete(int no) {
-		int i = Qa.deleteQA(no);
-		return ""+i;
+	@PostMapping("/QandA/update")
+	public String update(QADto dto) {
+		Qa.updateQA(dto);
+		return "redirect:../QandA";
+	}
+	
+	@RequestMapping("/QandA/delete/{qaID}")
+	public String delete(HttpSession session, @PathVariable int qaID, Model m) {
+		String userID = (String) session.getAttribute("userid");
+		m.addAttribute("userID", userID);
+		Qa.deleteQA(qaID, userID);
+		return "redirect:../../QandA";
 	}
 	
 	@GetMapping("/QandA/search")
