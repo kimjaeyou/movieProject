@@ -40,11 +40,11 @@ public class ReviewController {
 	MoviiAPI moApi;
 
 	@RequestMapping("movieReview")
-
-	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
+	public String Review(String movieCd, String title, Model m, HttpSession session) {
 		String poster = null;
 		String movieTitle = null;
 		String str = null;
+		
 
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
@@ -53,7 +53,7 @@ public class ReviewController {
 		KMovieList list = moApi.KmdbMoviesSeq(movieCd);
 		for (Datalist m1 : list.getData()) {
 			for (Movie n : m1.getResult()) {
-				if (n.getMovieSeq().equals(movieCd)) {
+				if (n.getTitle().replaceAll(" ","").equals(title.replaceAll(" ",""))) {
 					poster = n.getPosters().split("\\|")[0];
 					movieTitle = n.getTitle();
 					for (Plot p : n.getPlots().getPlot())
