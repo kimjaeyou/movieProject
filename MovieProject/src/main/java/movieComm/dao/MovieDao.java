@@ -14,8 +14,8 @@ import movieComm.DataStructure.MovieStructure;
 @Mapper
 public interface MovieDao {
 	//MovieStruct
-	@Insert("insert into Movie (movieSeq, title, director, genre, poster) "
-			+ "values( #{movieSeq}, #{title}, #{director}, #{genre}, #{poster})")
+	@Insert("insert into Movie (movieSeq, title, director, genre, poster, DOCID) "
+			+ "values( #{movieSeq}, #{title}, #{director}, #{genre}, #{poster}, #{DOCID})")
 	void InsertMovie(MovieStructure data);
 	
 	@Select("select movieSeq from Movie")

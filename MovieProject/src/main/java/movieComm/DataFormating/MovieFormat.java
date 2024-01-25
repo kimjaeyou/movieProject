@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import movieComm.DataStructure.DaillyStructure;
 import movieComm.DataStructure.MovieStructure;
 import movieComm.apiconfig.Director2;
 import movieComm.apiconfig.Movie;
 import movieComm.apiconfig.MovieList;
-import movieComm.apiconfig.MovieList2;
 import movieComm.apiconfig.MovieList3;
 import movieComm.apiconfig.MoviiAPI;
 import movieComm.kmdbApi.Datalist;
