@@ -14,7 +14,7 @@ import movieComm.dto.QADto;
 @Mapper
 public interface QADao {
 	
-	@Insert("insert into QandA(qaID, qaTitle, content, userID, registeredDate) values(#{qaID}, #{qaTitle}, #{content}, #{userID}, now())")
+	@Insert("insert into QandA(qaID, qaTitle, content, userID, registeredDate, readCount) values(#{qaID}, #{qaTitle}, #{content}, #{userID}, now(), 0)")
 	int insert(QADto dto);
 	
 	@Update("update QandA set readCount = readCount + 1 where qaID = #{qaID}")
