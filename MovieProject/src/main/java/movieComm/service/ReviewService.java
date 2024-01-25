@@ -68,12 +68,16 @@ public class ReviewService {
 	public double getAvgScore(String movieTitle, String movieCd){
 		
 		double sum = 0;
+		double total=0;
 		List<Integer>ScoreArr = Rdao.getScore(movieTitle, movieCd);
 		System.out.println(movieTitle);
 		for(int score : ScoreArr) {
 			sum += score;
 		}
+		if(sum != 0) {
+			total=sum/ScoreArr.size();
+		}
 		
-		return sum/ScoreArr.size();
+		return total;
 	}
 }
