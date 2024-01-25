@@ -48,6 +48,8 @@
 										리뷰</a></li>
 							</c:if>
 						</ul></li>
+						<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<form class="d-flex" action="MyPage" method="GET">
 					<button class="btn btn-outline-dark" type="submit">

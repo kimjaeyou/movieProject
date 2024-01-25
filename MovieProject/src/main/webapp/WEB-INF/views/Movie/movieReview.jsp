@@ -20,6 +20,78 @@
 <link
 	href="../../startbootstrap-shop-homepage-gh-pages/css/movieReview.css"
 	rel="stylesheet" />
+
+<style>
+    canvas {
+        display: block;
+        border: 1px solid #ccc;
+        text-size: 10px;
+    }
+</style>
+<script>
+    // 막대 그래프를 그리는 함수
+    function drawHorizontalBarChart(value, maxValue) {
+        var canvas = document.getElementById('horizontalBarChart');
+        var context = canvas.getContext('2d');
+        
+        // 최대치 설정
+        var maxBarWidth = 380;  // 최대치에 해당하는 너비 (원하는 값으로 설정)
+        var ratio = value / maxValue;
+
+        // 최대치를 넘어가면 최대치로 설정
+        if (ratio > 1) {
+            ratio = 1;
+        }
+
+        // 그래프 스타일
+        var barColor = '#2498db';
+        var barHeight = 30;
+        var textSize = '15px';
+        var textColor = '#F76E5B';
+        var lineColor = '#F76E5B'; 
+        
+        // 그래프 그리기
+        context.fillStyle = barColor;
+        context.fillRect(0, 10, ratio * maxBarWidth, barHeight);
+        
+        // 세로 선 그리기
+        context.beginPath();
+        for (var i = 1; i < 5; i++) {
+            var xPos = (i / 5) * maxBarWidth;
+            context.moveTo(xPos, 10);
+            context.lineTo(xPos, barHeight - 1);
+        }
+        context.strokeStyle = lineColor;
+        context.stroke();
+        
+        
+        // 눈금 그리기
+        context.beginPath();
+        context.moveTo(0, 10);
+        //context.lineTo(maxBarWidth, 10);
+        context.stroke();
+        
+        context.fillStyle = textColor;
+        context.font = textSize + ' Arial'; 
+       
+        
+        // 눈금에 해당하는 숫자 표시
+        for (var i = 1; i <= 5; i++) {
+            var xPos = (i / 5) * maxBarWidth;
+            context.fillText(i, xPos, barHeight -10);
+        }
+    }
+
+    // 예제 값 및 최대값으로 그래프 그리기
+    var exampleValue = ${score};  // 예제 값 (0부터 5.0 사이의 값)
+    var maxValue = 5.0;  // 최대값 설정
+
+    // 페이지 로딩이 완료된 후에 그래프 그리기
+    document.addEventListener("DOMContentLoaded", function() {
+        drawHorizontalBarChart(exampleValue, maxValue);
+    });
+</script>
+
 </head>
 <body>
 
@@ -50,7 +122,8 @@
 										리뷰</a></li>
 							</c:if>
 						</ul></li>
-						<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -98,17 +171,21 @@
 		<section id="movieDetail">
 			<div id="movieCoverLeft">
 				<div>
-					<img class="card-img-top" src=${post } alt="..." />
+					<img class="card-img-top" src=${post } alt="..." width="400" height="350"/>
 				</div>
 			</div>
 
 			<div id="movieCoverRight">
 				<div>
 					<div>
-						<div id="starValue">평균 별점 DB에서 가져오기</div>
+						<div id="starValue">
+							<h3>평균 별점: ${score}</h3> <canvas id="horizontalBarChart" width="400" height="50"></canvas>
+						</div>
 					</div>
 					<br>
-					<div class="movieTitle"><b>${movieTitle}</b></div>
+					<div class="movieTitle">
+						<b><h2>${movieTitle}</h2></b>
+					</div>
 					<br>
 					<div>
 						<div>${str}</div>

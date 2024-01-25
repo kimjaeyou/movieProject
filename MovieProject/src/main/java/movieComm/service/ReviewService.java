@@ -64,5 +64,16 @@ public class ReviewService {
 		List<Map<String, String>> movieTitles = Rdao.getmovieTitle(a);
 		return movieTitles;
 	}
-
+	
+	public double getAvgScore(String movieTitle, String movieCd){
+		
+		double sum = 0;
+		List<Integer>ScoreArr = Rdao.getScore(movieTitle, movieCd);
+		System.out.println(movieTitle);
+		for(int score : ScoreArr) {
+			sum += score;
+		}
+		
+		return sum/ScoreArr.size();
+	}
 }

@@ -39,6 +39,9 @@ public interface ReviewDao {
 	
 	@Select("SELECT * FROM review WHERE movieTitle LIKE '%${a}%'")
 	List<Map<String, String>> getmovieTitle(String a);
-
+	
+	@Select("SELECT score FROM review WHERE movieTitle = #{movieTitle} AND movieCd=#{movieCd}")
+	List<Integer> getScore(@Param(value="movieTitle")String movieTitle, @Param(value="movieCd")String movieCd);
+	
 }
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
-import movieComm.apiconfig.MovieList3;
 import movieComm.apiconfig.MoviiAPI;
 import movieComm.dao.ReviewDao;
 import movieComm.dao.movieContentDao;
@@ -67,7 +66,12 @@ public class ReviewController {
 		m.addAttribute("movieCd", movieCd);
 		m.addAttribute("post", poster);
 		m.addAttribute("str", str);
-
+		
+		double score =0;
+		
+		score = Reservice.getAvgScore(movieTitle,movieCd);
+		m.addAttribute("score", score);
+		
 		return "Movie/movieReview";
 	}
 
