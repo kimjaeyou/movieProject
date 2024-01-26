@@ -23,10 +23,6 @@ public class ReviewService {
 		List<Map<String, String>> mlist = Rdao.getList();
 		return mlist;
 	}
-	public List<Map<String, String>> title() {
-		List<Map<String, String>> tlist = mCdao.getList();
-		return tlist;
-	}
 	
 	public void script(ReviewDto review) {
 		System.out.println(review+"여기");
@@ -80,4 +76,10 @@ public class ReviewService {
 		
 		return total;
 	}
+	
+	public List<Map<String, String>> title() {
+        List<Map<String, String>> tlist = mCdao.getList();
+        return tlist;
+    }
+	
 }
