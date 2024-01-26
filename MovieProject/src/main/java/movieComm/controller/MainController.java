@@ -1,27 +1,24 @@
 package movieComm.controller;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import movieComm.DataFormating.DaillyFormat;
 import movieComm.DataFormating.MovieFormat;
 import movieComm.DataStructure.DaillyStructure;
 import movieComm.DataStructure.MovieStructure;
-import movieComm.apiconfig.MovieList;
-import movieComm.apiconfig.MovieList2;
 import movieComm.apiconfig.MoviiAPI;
 import movieComm.dao.Movie_listDao;
 import movieComm.dto.UserDto;
-import movieComm.kmdbApi.KMovieList;
 import movieComm.service.BoxOffixeService;
 import movieComm.service.MainService;
 import movieComm.service.MovieService;
@@ -88,7 +85,15 @@ public class MainController {
 		m.addAttribute("user", user);
 		
 		return "Mypage/Info";
+	}
 	
+	@GetMapping("Search")
+	public String getSearch(@RequestParam("str")String str, Model m) {
+		ArrayList<MovieStructure> list;
+		list = Moservice.searchServ(str);
+		m.addAttribute("list",list);
+		
+		return "Movie/searchInfo";
 	}
 
 }

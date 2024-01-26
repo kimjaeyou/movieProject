@@ -89,13 +89,14 @@
 	</header>
 	<!-- Section-->
 	<section class="py-5">
-	<div>
-		<form class="d-flex" action="Search" method="GET">
-			<input class="form-control me-2" type="search" placeholder="검색어 입력"
-				aria-label="Search" name="str" style = "margin-left:65%; width:25%;">
-			<button class="btn btn-outline-dark" type="submit">검색</button>
-		</form>
-	</div>
+		<div>
+			<form class="d-flex" action="Search" method="GET">
+				<input class="form-control me-2" type="search" placeholder="검색어 입력"
+					aria-label="Search" name="str"
+					style="margin-left: 65%; width: 25%;">
+				<button class="btn btn-outline-dark" type="submit">검색</button>
+			</form>
+		</div>
 		<div class="text-center">
 			<h2 class="display-4 fw-bolder">영화 정보</h2>
 		</div>
@@ -134,46 +135,6 @@
 						</div>
 					</div>
 					<%-- </c:if> --%>
-				</c:forEach>
-			</div>
-			<!-- Add a line separator here -->
-			<hr class="my-4" />
-			<!-- Display weekly box office message -->
-			<div class="text-center">
-				<h2 class="display-4 fw-bolder">오늘의 박스오피스</h2>
-				<br>
-			</div>
-			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
-				<c:forEach items="${list2}" var="option2">
-					<div class="col mb-5">
-						<div class="card h-100">
-							<!-- Product image-->
-							<img class="card-img-top" src=${option2.poster
-								}
-								alt="..." />
-							<!-- Product details-->
-							<div class="card-body p-4">
-								<div class="text-center">
-									<!-- Product name-->
-									<h5 class="fw-bolder">${option2.movieNm}</h5>
-									<!-- Product price-->
-									<br> <strong>누적 관객수</strong><br> ${option2.audiAcc}
-								</div>
-							</div>
-							<!-- Product actions-->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="text-center">
-									<form action="movieReview" method="POST">
-										<input value="${option2.movieSeq}" name=movieCd type="hidden">
-										<input value="${option2.movieNm}" name=title type="hidden">
-										<input class="btn btn-outline-dark mt-auto" type="submit"
-											name="View options" value="더보기">
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
 				</c:forEach>
 			</div>
 		</div>

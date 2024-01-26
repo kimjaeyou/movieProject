@@ -24,6 +24,9 @@ public interface MovieDao {
 	@Select("select * from Movie")
 	ArrayList<MovieStructure> GetMovies();
 	
+	@Select("select * from Movie where title like'%${str}%' ")
+	ArrayList<MovieStructure> GetSearchs(String str);
+	
 	
 	//daillyStruct
 	@Insert("insert into Dailly (movieSeq, movieNm, poster, audiAcc, rankOldAndNew, `rank`) "
