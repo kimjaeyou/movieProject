@@ -39,13 +39,13 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="MovieInfo">All
-									Products</a></li>
+							<li><a class="dropdown-item" href="reviewList">영화 리뷰</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="MovieInfo">Popular
-									Items</a></li>
-							<li><a class="dropdown-item" href="MovieInfo">New
-									Arrivals</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">박스오피스</a></li>
+							<c:if test="${not empty userid}">
+								<li><a class="dropdown-item" href="movieHistory">내가 작성한
+										리뷰</a></li>
+							</c:if>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../../QandA">Q&A</a></li>
 				</ul>

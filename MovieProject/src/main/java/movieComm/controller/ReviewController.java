@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
-import movieComm.apiconfig.MovieList3;
 import movieComm.apiconfig.MoviiAPI;
 import movieComm.dao.ReviewDao;
 import movieComm.dao.movieContentDao;
@@ -40,11 +39,14 @@ public class ReviewController {
 	MoviiAPI moApi;
 
 	@RequestMapping("movieReview")
-
-	public String Review(@RequestParam(name = "movieSeq") String movieCd, Model m, HttpSession session) {
+	public String Review(String movieCd, String title, Model m, HttpSession session) {
 		String poster = null;
 		String movieTitle = null;
 		String str = null;
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'main' of https://github.com/kimjaeyou/movieProject.git
 
 		String userid = (String) session.getAttribute("userid");
 		List<Map<String, String>> getReview = Reservice.getReview(movieCd);
@@ -53,10 +55,19 @@ public class ReviewController {
 		KMovieList list = moApi.KmdbMoviesSeq(movieCd);
 		for (Datalist m1 : list.getData()) {
 			for (Movie n : m1.getResult()) {
+<<<<<<< HEAD
 				poster = n.getPosters().split("\\|")[0];
 				movieTitle = n.getTitle();
 				for (Plot p : n.getPlots().getPlot())
 					str = p.getPlotText();
+=======
+				if (n.getTitle().replaceAll(" ","").equals(title.replaceAll(" ",""))) {
+					poster = n.getPosters().split("\\|")[0];
+					movieTitle = n.getTitle();
+					for (Plot p : n.getPlots().getPlot())
+						str = p.getPlotText();
+				}
+>>>>>>> branch 'main' of https://github.com/kimjaeyou/movieProject.git
 			}
 		}
 
@@ -65,7 +76,12 @@ public class ReviewController {
 		m.addAttribute("movieCd", movieCd);
 		m.addAttribute("post", poster);
 		m.addAttribute("str", str);
-
+		
+		double score =0;
+		
+		score = Reservice.getAvgScore(movieTitle,movieCd);
+		m.addAttribute("score", score);
+		
 		return "Movie/movieReview";
 	}
 
@@ -92,6 +108,10 @@ public class ReviewController {
 	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,
 			@RequestParam String post, @RequestParam String movieTitle, Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'main' of https://github.com/kimjaeyou/movieProject.git
 		m.addAttribute("movieTitle", movieTitle);
 		m.addAttribute("post", post);
 		m.addAttribute("movieCd", movieCd);
@@ -103,6 +123,10 @@ public class ReviewController {
 	@PostMapping("reviewList")
 	public String reviewList(Model m, ReviewDto review, RedirectAttributes redirectAttributes) {
 		// 리뷰를 저장하는 메서드 호출
+<<<<<<< HEAD
+=======
+		System.out.println(review + "여기");
+>>>>>>> branch 'main' of https://github.com/kimjaeyou/movieProject.git
 		Reservice.script(review);
 		// POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
 		return "redirect:/reviewList";
@@ -112,6 +136,10 @@ public class ReviewController {
 	public String getReviewList(String review_id, Model m) {
 		// 리뷰 목록을 다시 불러와서 모델에 추가
 		List<Map<String, String>> reviewScript = Reservice.getReviewScript();
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'main' of https://github.com/kimjaeyou/movieProject.git
 		m.addAttribute("reviewScript", reviewScript);
 		return "Movie/reviewList";
 	}

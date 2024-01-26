@@ -46,13 +46,13 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#!"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">영화정보</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="MovieInfo">All
-									Products</a></li>
+							<li><a class="dropdown-item" href="reviewList">영화 리뷰</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="MovieInfo">Popular
-									Items</a></li>
-							<li><a class="dropdown-item" href="MovieInfo">New
-									Arrivals</a></li>
+							<li><a class="dropdown-item" href="MovieInfo">박스오피스</a></li>
+							<c:if test="${not empty userid}">
+								<li><a class="dropdown-item" href="movieHistory">내가 작성한
+										리뷰</a></li>
+							</c:if>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../../QandA">Q&A</a></li>
 				</ul>
@@ -94,42 +94,51 @@
 		</div>
 	</header>
 	<!-- Section-->
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-4 gx-lg-5">
-				<div class="col-lg-12">
-					<div id="container">
-					<table border="1">
-						<tr><td>${dto.qaTitle}</td><td>작성자: ${dto.userID}</td></tr>
-						<tr><td colspan="2" align="center">${dto.content}</td></tr>
-						<tr><td>등록일: <fmt:formatDate value="${dto.registeredDate }" dateStyle="long"/></td><td>조회수: ${dto.readCount}</td></tr>
-						<tr><td colspan="2" align="right">
-						
-						<c:if test="${ userID == dto.userID }">
-							<a href="/QandA/update/${dto.qaID}">글 수정 </a>
-							<a href="../../QandA/delete/${dto.qaID}">글 삭제</a>
-						</c:if>
-						
-						<a href="../../QandA">목록 이동</a> 
-						</td></tr>
-					</table>
-											
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Footer-->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2023</p>
-		</div>
-	</footer>
-	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Core theme JS-->
-	<script src="../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+    <section class="py-5">
+        <div class="container-fluid"> <!-- container-fluid를 사용하여 전체 화면 너비로 설정 -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div id="container" style = "margin-left: 150px">
+                        <table class="table table-bordered w-100 p-4">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">${dto.qaTitle}</th>
+                                    <th scope="col">작성자: ${dto.userID}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" align="left">
+                                    <pre>${dto.content}</pre>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>등록일: <fmt:formatDate value="${dto.registeredDate}" dateStyle="long" /></td>
+                                    <td>조회수: ${dto.readCount}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="right">
+                                        <c:if test="${userID == dto.userID}">
+                                            <a href="/QandA/update/${dto.qaID}" class="btn btn-primary">글 수정</a>
+                                            <a href="../../QandA/delete/${dto.qaID}" class="btn btn-danger">글 삭제</a>
+                                        </c:if>
+                                        <a href="../../QandA" class="btn btn-secondary">목록 이동</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- ... -->
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS -->
+    <script src="../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
 </body>
 </html>

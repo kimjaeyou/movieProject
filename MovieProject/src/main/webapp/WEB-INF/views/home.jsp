@@ -47,7 +47,8 @@
 										리뷰</a></li>
 							</c:if>
 						</ul></li>
-						<li class="nav-item"><a class="nav-link active" aria-current="page" href="QandA">Q&A</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="QandA">Q&A</a></li>
 				</ul>
 				<c:if test="${not empty userid}">
 					<form class="d-flex" action="MyPage" method="GET">
@@ -96,29 +97,34 @@
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
 				<c:forEach items="${list}" var="option">
 					<%-- <c:if test="${not empty option.genreAlt and not empty option.openDt and !(option.genreAlt eq '성인물(에로)')}"> --%>
-						<div class="col mb-5">
-							<div class="card h-100">
-								<!-- Product image-->
-								<img class="card-img-top" src=${option.poster} alt="..." />
-								<!-- Product details-->
-								<div class="card-body p-4">
-									<div class="text-center">
-										<!-- Product name-->
-										<h5 class="fw-bolder">${option.title}</h5>
-										<!-- Product price-->
-										${option.genre}
-									</div>
+					<div class="col mb-5">
+						<div class="card h-100">
+							<!-- Product image-->
+							<img class="card-img-top" src=${option.poster } alt="..." />
+							<!-- Product details-->
+							<div class="card-body p-4">
+								<div class="text-center">
+									<!-- Product name-->
+									<h5 class="fw-bolder">${option.title}</h5>
+									<!-- Product price-->
+									${option.genre}
 								</div>
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto"
-											href="movieReview?movieSeq=${option.movieSeq}">
-											View options</a>
-									</div>
+							</div>
+							<!-- Product actions-->
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center">
+									<form action="movieReview" method="POST">
+										<input value="${option.movieSeq}" name=movieCd type="hidden">
+										<input value="${option.title}" name=title type="hidden">
+										<input class="btn btn-outline-dark mt-auto" type="submit" name="View options" value="더보기">
+									</form>
+									<%-- <a class="btn btn-outline-dark mt-auto"
+										href="movieReview?movieSeq=${option.movieSeq}&title=${option.title}">
+										View options</a> --%>
 								</div>
 							</div>
 						</div>
+					</div>
 					<%-- </c:if> --%>
 				</c:forEach>
 			</div>
@@ -126,38 +132,42 @@
 			<hr class="my-4" />
 			<!-- Display weekly box office message -->
 			<div class="text-center">
-				<h2 class="display-4 fw-bolder">오늘의 박스오피스</h2><br>
+				<h2 class="display-4 fw-bolder">오늘의 박스오피스</h2>
+				<br>
 			</div>
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
-			<c:forEach items="${list2}" var="option2">
-						<div class="col mb-5">
-							<div class="card h-100">
-								<!-- Product image-->
-								<img class="card-img-top" src=${option2.poster}
+				<c:forEach items="${list2}" var="option2">
+					<div class="col mb-5">
+						<div class="card h-100">
+							<!-- Product image-->
+							<img class="card-img-top" src=${option2.poster
+								}
 									alt="..." />
-								<!-- Product details-->
-								<div class="card-body p-4">
-									<div class="text-center">
-										<!-- Product name-->
-										<h5 class="fw-bolder">${option2.movieNm}</h5>
-										<!-- Product price-->
-										<br><strong>누적 관객수</strong><br> 
-										 ${option2.audiAcc}
-									</div>
+							<!-- Product details-->
+							<div class="card-body p-4">
+								<div class="text-center">
+									<!-- Product name-->
+									<h5 class="fw-bolder">${option2.movieNm}</h5>
+									<!-- Product price-->
+									<br>
+									<strong>누적 관객수</strong><br> ${option2.audiAcc}
 								</div>
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto"
-											href="movieReview?movieSeq=${option2.movieSeq}">
-											View options</a>
-									</div>
+							</div>
+							<!-- Product actions-->
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center">
+									<form action="movieReview" method="POST">
+										<input value="${option2.movieSeq}" name=movieCd type="hidden">
+										<input value="${option2.movieNm}" name=title type="hidden">
+										<input class="btn btn-outline-dark mt-auto" type="submit" name="View options" value="더보기">
+									</form>
 								</div>
 							</div>
 						</div>
+					</div>
 				</c:forEach>
-				</div>
+			</div>
 		</div>
 		</div>
 	</section>

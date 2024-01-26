@@ -42,6 +42,7 @@ public interface ReviewDao {
 	@Select("SELECT * FROM review WHERE movieTitle LIKE '%${a}%'")
 	List<Map<String, String>> getmovieTitle(String a);
 	
+<<<<<<< HEAD
 	@Select("SELECT * FROM review WHERE user_id ='${a}'")
 	List<Map<String, String>> getUserId(String a);
 
@@ -51,6 +52,10 @@ public interface ReviewDao {
 	
 	@Delete("DELETE FROM review WHERE review_id = #{review_id}")
 	void delete_review(@Param("review_id") int review_id);
+=======
+	@Select("SELECT score FROM review WHERE movieTitle = #{movieTitle} AND movieCd=#{movieCd}")
+	List<Integer> getScore(@Param(value="movieTitle")String movieTitle, @Param(value="movieCd")String movieCd);
+>>>>>>> branch 'main' of https://github.com/kimjaeyou/movieProject.git
 	
 }
 
