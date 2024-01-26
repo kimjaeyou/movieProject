@@ -81,13 +81,19 @@ public class ReviewController {
 	}
 
 	@RequestMapping("movieHistory")
-	public String movieHistory(Model m, HttpSession session) {
-		List<Map<String, String>> tlist = Reservice.title();
-		String userid = (String) session.getAttribute("userid");
-		m.addAttribute("userid", userid);
-		m.addAttribute("tlist", tlist);
-		return "Movie/movieHistory";
-	}
+    public String movieHistory(Model m, HttpSession session) {
+        String userid = (String) session.getAttribute("userid");
+        List<Map<String, String>> getUserId = Reservice.getUserId(userid);
+        m.addAttribute("getUserId", getUserId);
+        return "Movie/movieHistory";
+    }
+    @PostMapping("movieHistory")
+    public String deleteReview(@RequestParam("review_id") int review_id, Model m, ReviewDto review, RedirectAttributes redirectAttributes) {
+        // 리뷰를 삭제하는 메서드 호출
+        Reservice.delete_review(review_id);
+        // POST 요청 후에 리다이렉션을 통해 GET 요청으로 변경
+        return "redirect:/movieHistory";
+    }
 
 	@RequestMapping("reviewScript")
 	public static String reviewScript(@RequestParam String movieCd, @RequestParam String movieNm,
